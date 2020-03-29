@@ -1,0 +1,17 @@
+.Rproj.user
+.Rhistory
+.RData
+_bookdown_files
+_book
+packages.bib
+images/dedication.lyx
+.DS_Store
+*.rds
+.Rapp.history
+
+bookdown-start.log
+style.css
+*.md
+!docs/*
+book.bib
+*.tex
