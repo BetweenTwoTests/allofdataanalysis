@@ -1,13 +1,13 @@
 --- 
-title: "BetweenTwoTests"
-author: "Leon Kim"
+title: "A Minimal Bookdown Book"
+author: "Sean Kross"
 date: "2020-03-31"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: BetweenTwoTests/betweentwotests.github.io
+github-repo: seankross/bookdown-start
 url: 'http\://seankross.com/bookdown-start/'
 description: "Everything you need (and nothing more) to start a bookdown book."
 ---
