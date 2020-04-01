@@ -13,5 +13,3 @@ bookdown-start.log
 style.css
 *.md
 !docs/*
-book.bib
-*.tex
