@@ -1,7 +1,7 @@
 --- 
 title: "A Minimal Bookdown Book"
 author: "Sean Kross"
-date: "2020-03-31"
+date: "2020-04-01"
 site: "bookdown::bookdown_site"
 output:
   bookdown::gitbook:

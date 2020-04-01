@@ -1,5 +1,6 @@
 [
-["index.html", "A Minimal Bookdown Book Preface", " A Minimal Bookdown Book Sean Kross 2020-03-31 Preface This is the very first part of the book. "],
+["index.html", "All of Data Analysis An Expansive Course in Statistical Analysis Preface", " All of Data Analysis An Expansive Course in Statistical Analysis Leon Kim 2020-04-01 Preface This is a reproduction of my study notes &amp; exercises from various points of my academic and professional career in statistics. Please excuse the grandiose title. (Fans of statistics should note that the title is tongue-in-cheek reference to this equally grandiose book title ) "],
 ["introduction.html", "Chapter 1 Introduction", " Chapter 1 Introduction This is the first real chapter. "],
-["diving-in.html", "Chapter 2 Diving In", " Chapter 2 Diving In Now let’s talk details. "]
+["diving-in.html", "Chapter 2 Diving In", " Chapter 2 Diving In Now let’s talk details. "],
+["technical-details.html", "Chapter 3 Technical Details", " Chapter 3 Technical Details Now I’ll teach you some crazy math, but I need to work it out first… "]
 ]

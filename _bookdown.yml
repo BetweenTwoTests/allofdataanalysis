@@ -2,6 +2,13 @@ book_filename: "bookdown-start"
 chapter_name: "Chapter "
 repo: https://github.com/BetweenTwoTests/betweentwotests-book
 output_dir: docs
-rmd_files: ["index.Rmd", "01-Introduction.Rmd", "02-Diving-In.Rmd"]
+rmd_subdir:
+  content
 clean: [packages.bib, bookdown.bbl]
-new_session: yes
+new_session: no
+after_chapter_script: clean_vars_and_pkgs.R
+rmd_files:
+  - "index.Rmd"
+  - "content/01-Introduction.Rmd"
+  - "content/02-Diving-In.Rmd"
+  - "content/03-Work-In-Progress.Rmd"
