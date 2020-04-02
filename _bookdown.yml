@@ -2,6 +2,7 @@ book_filename: "bookdown-start"
 chapter_name: "Chapter "
 repo: https://github.com/BetweenTwoTests/betweentwotests-book
 output_dir: docs
+delete_merged_file: yes
 rmd_subdir:
   content
 clean: [packages.bib, bookdown.bbl]
