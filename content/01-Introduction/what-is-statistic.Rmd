@@ -1,0 +1,63 @@
+# Introduction
+
+## Hypothesis
+
+Some important terms & definitions
+
+<h3>What is the purpose of statistics?</h3>
+
+estimate / predict / simplify / organize data
+
+<h3>Law</h3>
+
+a rule that implies cause and effect between anything and that applies under same conditions every time.
+
+&nbsp;&nbsp;&nbsp;&nbsp;i.e. under some conditions, we can predict what happens all the time
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;but this does not explain "why" the observed cause and effect events happen
+
+<h3>Model</h3>
+
+an idealization of the world
+
+<h3>Hypothesis</h3>
+
+**falsifiable** statement regarding the **true state** of the world
+
+&nbsp;&nbsp;&nbsp;&nbsp;true state: assumption that some regularity exists (i.e. law of nature)
+
+- Hypothesis is supported or refuted by evidence, **never proven to be true**.
+
+- Hypothesis is a positive statement of a question.
+
+- Error is assumed to be present
+
+---
+
+**Science proves in negative direction**. Our understanding of the world changes by showing that the existing scientific _"fact"_ is _"false"_ and other **_alternative hypotheses_** are better candidates to explain the observed events. Let's call this currently accepted hypothesis as **_null hypothesis_** and showing that null hypothesis is _"false"_ as **_rejecting the null hypothesis_**. (The words _"fact"_ and _"false"_ are purposely italicized to denote that these terms do not note certainty)
+
+Saying that there are many other alternative hypothesis that could be shown true by data is kind of unfair to the null hypothesis and also difficult to reason about. What if we state our null hypothesis and alternative hypothesis in a way that it is a choice between one or the other? i.e. _either_ null _or_ alternative hypothesis is a better explanation of the observed data. This is the idea behind how null hypotheses are commonly formulated.
+
+Actually, let's define 3 types of hypothesis
+
+1. _(Scientific) Research Hypothesis_  
+Words, propositions, statements etc. that can be falsified by data
+
+2. _(Statistical) Null Hypothesis_  
+Since we can't _"prove"_ in statistics, this is a _nullifiable_ hypothesis that is generally assumed to be true until data shows otherwise.  
+e.g. presumed innocent until guilty.  
+<br/>
+Note that this is can be a re-wording of Research Hypothesis. Null Hypothesis is a general statement or default position that there is no relationship between two measured phenomena or no association among groups of observed values. (Null hypothesis does not necessarily have to be "no" effect. More on this later). We usually denote this with the symbol and equation $H_o$ and formalized as an equation, for example $\text{effect} = 0$.
+
+3. _(Statistical) Alternative Hypothesis_ 
+Since science proves in negative direction, this is the _"case B"_ scenario when the data collected suggests that we should **_reject_** the null hypothesis. Null hypothesis and alternative hypothesis are mutually exclusive -- i.e. if we ever knew what the absolute true state of the world, that absolute truth will be one or the other but not both. We usually denote this with the symbol $H_a$ and formalized as an equationt hat is negation of the corresponding null hypothesis, for example $\text{effect} \neq 0$.  
+
+
+<h4>Formulating the hypothesis</h4>
+
+If
+
+<h3></h3>
+
+
+<h3></h3>
