@@ -7,9 +7,9 @@ rmd_subdir:
   content
 clean: [packages.bib, bookdown.bbl]
 new_session: no
-after_chapter_script: clean_vars_and_pkgs.R
+after_chapter_script: after_chapter_script.R
 rmd_files:
   - "index.Rmd"
-  - "content/01-Introduction/what-is-statistic.Rmd"
-  - "content/02-Diving-In.Rmd"
-  - "content/03-Work-In-Progress.Rmd"
+  - "content/01-Introduction/01-00-introduction.Rmd"
+  - "content/01-Introduction/01-01-hypothesis.Rmd"
+  - "content/01-Introduction/01-02-examples.Rmd"

@@ -1,13 +1,11 @@
 bookdown::gitbook:
   css: style.css
-  split_by: chapter
+  split_by: section
   config:
     toc:
-      collapse: subsection
+      collapse: none
       before: |
         <li><a href="./">All of Data Analysis</a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit:
       link: https://github.com/BetweenTwoTests/betweentwotests-book/edit/master/%s
       text: "Edit"

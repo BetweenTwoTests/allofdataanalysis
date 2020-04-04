@@ -1,0 +1,89 @@
+## Hypothesis
+
+Some important terms & definitions
+
+<h3>What is the purpose of statistics?</h3>
+
+estimate / predict / simplify / organize data
+
+<h3>Law</h3>
+
+a rule that implies cause and effect between anything and that applies under same conditions every time.
+
+&nbsp;&nbsp;&nbsp;&nbsp;i.e. under some conditions, we can predict what happens all the time
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;but this does not explain "why" the observed cause and effect events happen
+
+<h3>Model</h3>
+
+an idealization of the world
+
+<h3>Hypothesis</h3>
+
+**falsifiable** statement regarding the **true state** of the world
+
+&nbsp;&nbsp;&nbsp;&nbsp;true state: assumption that some regularity exists (i.e. law of nature)
+
+- Hypothesis is supported or refuted by evidence, **never proven to be true**.
+
+- Hypothesis is a positive statement of a question.
+
+- Error is assumed to be present
+
+---
+
+**Science proves in negative direction**. Our understanding of the world changes by showing that the existing scientific _"fact"_ is _"false"_ and other **_alternative hypotheses_** are better candidates to explain the observed events. Let's call this currently accepted hypothesis as **_null hypothesis_** and showing that null hypothesis is _"false"_ as **_rejecting the null hypothesis_**. (The words _"fact"_ and _"false"_ are purposely italicized to denote that these terms do not note certainty). You can optionally thing of this as a hypothesis to __null__ify or a hypothesis of 0 case, null case etc. (one of many words that mean "nothing"). The former "nullify" might make more sense than the "nothing" case if you have no prior exposure to statistics. We will see why the later case is a more popular case of thinking of the null hypothesis.
+
+---
+
+Saying that there are many other alternative hypothesis that could be shown as the better candidate for observed data (1-vs-many case) is more difficult to reason about compared to a simpler, 1-vs-1 case. What if we state our null hypothesis and alternative hypothesis in a way that it is a choice between one or another? i.e. _either_ null hypothesis _or_ alternative hypothesis is a better explanation of the observed data. This is the idea behind how null hypotheses are commonly formulated.
+
+Actually, let's define 3 types of hypothesis
+
+1. _(Scientific) Research Hypothesis_  
+This is a research question of interested in words, propositions, statements etc. that can be falsified by data. This question does not necessarily have to be quantitative in nature.
+
+2. _(Statistical) Null Hypothesis_  
+Since we can't _"prove true"_ in statistics, this is the _nullifiable_ hypothesis that is generally assumed to be true until data shows otherwise.  
+e.g. presumed innocent until guilty.  
+<br/>
+Note that this is can be a re-wording of Research Hypothesis. A Null Hypothesis is generally the default position that there is no relationship between two measured phenomena. Similarly, the default position can be that there are no association among groups of observed values. (Null hypothesis does not necessarily have to be "no" effect. More on this later). We usually denote this with the symbol and equation $H_0$ and formalized as an equation, for example $\text{effect} = 0$. The word "null" here is taking on both verb and adjective forms in Null Hypothesis.
+
+3. _(Statistical) Alternative Hypothesis_ 
+Since science proves in negative direction, this is the _"case B"_ scenario when the data collected suggests that we should **_reject_** the **_null_** hypothesis in favor of the alternative. Null hypothesis and alternative hypothesis are mutually exclusive -- i.e. if we ever knew what the absolute true state of the world, that absolute truth will be one or the other but not both. We usually denote this with the symbol $H_a$ and formalized as an equation that is negation of the corresponding null hypothesis, for example $\text{effect} \neq 0$.  
+<br/>The Alternative hypothesis often formulated as the algebraic complement of the null hypothesis. Hence, you will see it stated often as $\neq$ (compared to null hypothesis of $=$). This satisfies the mutual exclusivity requirement. But note that mutual exclusivity does not necessarily imply that null and alternative hypothesis taken together have to account for _all_ possibility.  
+  
+Examples to clarify this:
+
+Your friend claims that he is very good at guessing the answer to a 5-choice multiple choice questions. If given the chance, he claims that he can guess at every single question without even looking at the question and its choices (which would create a random guessing scenario without him being able to eliminate some of the choices to make "educated guessing"). You are obviously don't believe that he will be able to get all answers correct, so you give him a test with 10 questions, each with 5 choices.  
+  
+- What is the null hypothesis?
+
+In this test where you friend randomly guessed at all 10 questions, you would expect him to get approximately 20% correct. This is your default case, driven by what you know about basic probability. So you state that $H_0: p = \frac{1}{5}$ where $p$ is the percentage score for your test.
+
+- What is the alternative hypothesis?
+
+If we followed the conventional wisdom of stating the alternative as complement of the null, then $H_a: p \neq \frac{1}{5}$. You run your experiment and collect the result as $p_{friend}$. You plug these 3 pieces of information to your favorite statistics software **_cough_** _R_ **_cough_** and gets the result of your hypothesis test using _statistics_. (You actually would need more than these 3 pieces of information. More on that later too). The software says says "reject the null hypothesis and accept the alternative hypothesis". You are in shock. Maybe statistic technique you used was wrong?  Maybe he was telling the truth and he is a clairvoyant who knows the answers to everything. You start to have existential crisis.
+
+But wait, take a look at the $H_a$. It says the test score is not equal to $1/5$. Under this alternative hypothesis, your friend could have gotten all the questions wrong or all the questions right. The former would imply he is not a clairvoyant while the latter does imply he is. Stated in terms of formula, our alternative hypothesis could also be $H_a: p < \frac{1}{5}$ or $H_a: p > \frac{1}{5}$. Since we are looking for evidence that your friend is clairvoyant, we should have used the latter alternative hypothesis.
+
+You run your statistical software again with the new alternative hypothesis, $H_a: p > \frac{1}{5}$. The software says "failed to reject the null hypothesis". Your friend is in an uproar and accurse of being a statistical hack. ~Clearly both of you must enroll in graduate program in statistics to figure out who is right.~
+
+---
+
+Whether we choose $\neq$, $<$, or $>$ is related to the statistical technique we use. More on this later, but it should be noted that statistics does not guide the alternative hypothesis. It should be guided by the research hypothesis.    
+
+
+<h4>Formulating the hypothesis</h4>
+
+A cursory look would imply that $H_0$ is always "something equals nothing" and $H_a$ is "something equals not-nothing". But this isn't always true, as we see in the example. See [answer to "How to choose the null and alternative hypothesis?" in Cross Validated Forum for more](https://stats.stackexchange.com/a/123304/183622)
+
+The way that $H_0$ and $H_a$ are stated in textbooks suggest that you should form the null hypotheis comes first, then the alternative hypothesis. Although this can get you the right answer, the more suitable direction is $H_a \rightarrow  H_0$. The initial starting point of $H_a$ should be guided by your (scientific) Research Hypothesis. The $H_0$ is often the complement of $H_a$ or more often $H_0: something = 0$, but it doesn't have to be. The "null" in Null Hypothesis doesn't mean $= 0$. It means the $something$ you wanted is not present, which often is $= 0$ but not always.
+
+We often want to see evidence against the null, and this aligns well with the fact that what we want to establish evidence for the Research Hypothesis / Alternative Hypothesis.  
+
+There are cases where we **do not want to** reject the null. These scenarios are when we finding modeling something. We will see example of this later on as well.
+
+
+
+
