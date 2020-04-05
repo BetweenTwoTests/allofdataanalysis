@@ -16,6 +16,12 @@ url: 'http\://betweentwotests.com/allofdataanalysis/'
 description: "All of Data Analysis"
 ---
 
+
+```{r setup, eval=TRUE, echo=FALSE}
+# Default setting
+# knitr::opts_chunk$set(comment = "  ", eval=TRUE, echo=FALSE)
+```
+
 # About {-}
 
 This is a reproduction of my study notes & exercises from various points of my academic and professional career in statistics. Please excuse the grandiose title. (Fans of statistics should note that the title is tongue-in-cheek reference to [this equally grandiose book title](https://www.google.com/search?q=all+of+statistics&oq=all+of+statistics) )

@@ -1,5 +1,5 @@
 book_filename: "bookdown-start"
-chapter_name: "Chapter "
+chapter_name: "Chapter"
 repo: https://github.com/BetweenTwoTests/betweentwotests-book
 output_dir: docs
 delete_merged_file: yes
@@ -13,3 +13,4 @@ rmd_files:
   - "content/01-Introduction/01-00-introduction.Rmd"
   - "content/01-Introduction/01-01-hypothesis.Rmd"
   - "content/01-Introduction/01-02-examples.Rmd"
+  - "content/02-Summary-Statistics/02-00-Summary-Statistics.Rmd"
