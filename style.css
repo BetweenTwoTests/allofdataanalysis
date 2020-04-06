@@ -1,6 +1,6 @@
 .book .book-body .page-wrapper .page-inner {
-  min-width: 980px;
-  max-width: 90%;
+  min-width: 680px;
+  max-width: 980px;
 }
 p.caption {
   color: #777;
@@ -22,4 +22,20 @@ pre code {
 }
 .level1 h1 {
   border-bottom: 1px solid;
+}
+
+.column-left{
+  float: left;
+  width: 33%;
+  text-align: left;
+}
+.column-center{
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+}
+.column-right{
+  float: right;
+  width: 33%;
+  text-align: right;
 }

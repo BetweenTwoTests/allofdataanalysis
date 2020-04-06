@@ -42,56 +42,64 @@ Here are the steps to create a frequency table:
 <br/>
 In our chocolate chip example, the highest value is 32 and the lowest is 9 for measurements at time 1.
 
+---
+
 <!-- Step 2, two column -->
-
-```{r chocochip-freq-table-x, echo=FALSE}
-chocochip_unit <- 1
-x <- sort(seq(min(df_chips$Time_1), max(df_chips$Time_1), by = chocochip_unit), decreasing = T)
-df_freq <- tibble(x = x)
-
-col_width <- "1 in"
-kable(
-  bind_rows(
-    head(df_freq, n=3),
-    tail(df_freq, n=3)
-  )
-) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F, position = "float_right") %>% 
-  column_spec(seq_along(df_freq), width = col_width, width_min = col_width, width_max = col_width) %>% 
-  pack_rows("...", start_row = 4, end_row = 6, label_row_css = "text-align: center;")
-```
 
 2. Count down from the highest value to the lowest value by __unit__ intervals. Put this sequence in column $x$ of our frequency table in decreasing order.  
 <br/>
 __*unit*__: precision width of your measurement, in most cases $1$ since we measure counts by whole numbers. This may seem trivial because what else could it be other than $1$? Well, this is because we (humans) count numbers by whole numbers, and we are conditioned to think this way. In reality, we made a preliminary decision to what constitutes as 1 chocolate chip versus 2 chocolate chips. In this scenario, it is not possible to measure 1.5 chocolate chips. Note that we are not saying it is impossible to count 1.5 chips -- we would just have to define what this is. The 1-vs-2-chips concept is something that we invented for our __measurement__ of the construct of __chocolate chip__. We as a society "agreed" on a systematic procedural way to count chocolate chips.  
 <br/>If we had a machine that measured the magnitude of chocolate chip at $0.5$ intervals, then we would count down by $0.5$ instead. 
 
-```{r chocochip-freq-table-x-echo, eval=FALSE, echo=TRUE}
+```{r chocochip-freq-table-step2-echo, eval=FALSE, echo=TRUE}
+# Step 2
 chocochip_unit <- 1
 x <- sort(seq(min(df_chips$Time_1), max(df_chips$Time_1), by = chocochip_unit), decreasing = T)
 df_freq <- tibble(x = x)
 ```
 
+
+---
+
 <!-- Step 3, two column -->
 
-```{r chocochip-freq-table-f, echo=FALSE}
+3. For each row value of column $x$, count the number of times that value appeared in our measurement. Put this value in column $f$ (for frequency) in our table.
+
+```{r chocochip-freq-table, echo=FALSE}
+# Step 2
+chocochip_unit <- 1
+x <- sort(seq(min(df_chips$Time_1), max(df_chips$Time_1), by = chocochip_unit), decreasing = T)
+df_freq <- tibble(x = x)
+
+# Step 3
+# Count # of times each Time_1 value appeared in our x, and put the counts in column f
 df_freq <- as_tibble(
   as.data.frame.table(
     table(x = factor(df_chips$Time_1, levels = df_freq$x)), 
     responseName='f')
 )
 
+# Step 4
+df_freq <- df_freq %>% 
+  arrange(desc(x)) %>% # cumulative sum requires ordered x from smallest to highest
+  mutate(cf = cumsum(f)) %>% 
+  arrange(x)
+
 col_width <- "1 in"
 kable(df_freq) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F, position = "float_right") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), 
+                full_width = F, position = "float_right") %>% 
   column_spec(seq_along(df_freq), width = col_width, width_min = col_width, width_max = col_width)
 ```
 
+Note that some frequency counts are 0, for exampe $x = 31$. This is because none of the observers (33 students) did not measure instances of 31 chocolate chips in their cookies. This does not mean Chips Ahoy company does not make cookies with 31 chocolate chips. It just means that we failed to observe such instance due to __sampling error__. If we had measured all the cookies produced by the company (i.e. __*population*__ of all cookies) and repeated the measurement experiment, we would know whether there truly wasn't a single cookie with 31 chips. In our __*sample*__ of 33 cookies, we don't know if $f = 0$ if $x = 31$ is due to chance. In the __*population*__ of all cookies, we would know for a fact that $f = 0$ if $x = 31$ because we have the measurement for the entire population.  
+<br/>
+Also note that saying "This cookie has 1 'chocolate chip'" is equivalent to saying "This cookie has somewhere between 0.5 and 1.5 'chocolate chip'". The former is a very strong statement that cannot possibly be true, as we genuinely can't know what __exactly__ 1 choclate chip is. The latter is a statement that communicates uncertainty due to __*measurement error*__ of our procedural way to count chocolate chip.  
+<br/>
+This "procedural way to count chocolate chip" is also called __*operationalization*__ of chocolate chip. To be more generic, "number of chocolate chip" is an example of a __*construct*__. Contruct is a broad concept or topic of study interest. Another examples of constructs in non cookie-factory context is "intelligence". Just like how "number of chocolate chip" can be a difficult thing to define and measure, "intelligence" is difficult to define and measure. Our measurement error comes from various sources, including how we define these constructs and how we operationalize them.
 
-3. For each row value of column $x$, count the number of times that value appeared in our measurement. Put this value in column $f$ (for frequency) in our table.
-
-
-```{r chocochip-freq-table-f-echo, eval=FALSE, echo=TRUE}
+```{r chocochip-freq-table-step3-echo, eval=FALSE, echo=TRUE}
+# Step 3
 # Count # of times each Time_1 value appeared in our x, and put the counts in column f
 df_freq <- as_tibble(
   as.data.frame.table(
@@ -100,11 +108,20 @@ df_freq <- as_tibble(
 )
 ```
 
-Note that some frequency counts are 0, for exampe $x = 31$. This is because none of the observers (33 students) did not measure instances of 31 chocolate chips in their cookies. This does not mean Chips Ahoy company does not make cookies with 31 chocolate chips. It just means that we failed to observe such instance due to __sampling error__. If we had measured all the cookies produced by the company (i.e. __*population*__ of all cookies) and repeated the measurement experiment, we would know whether there truly wasn't a single cookie with 31 chips. In our __*sample*__ of 33 cookies, we don't know if $f = 0$ if $x = 31$ is due to chance. In the __*population*__ of all cookies, we would know for a fact that $f = 0$ if $x = 31$ because we have the measurement for the entire population.  
-<br/>
-Also note that saying "This cookie has 1 'chocolate chip'" is equivalent to saying "This cookie has somewhere between 0.5 and 1.5 'chocolate chip'". The former is a very strong statement that cannot possibly be true, as we genuinely can't know what __exactly__ 1 choclate chip is. The latter is a statement that communicates uncertainty due to __*measurement error*__ of our procedural way to count chocolate chip.  
-<br/>
-This "procedural way to count chocolate chip" is also called __*operationalization*__ of chocolate chip. To be more generic, "number of chocolate chip" is an example of a __*construct*__. Contruct is a broad concept or topic of study interest. Another examples of constructs in non cookie-factory context is "intelligence". Just like how "number of chocolate chip" can be a difficult thing to define and measure, "intelligence" is difficult to define and measure. Our measurement error comes from various sources, including how we define these constructs and how we operationalize them.
+---
+
+<!-- Step 4-->
+
+4. We now calculate the cumulative frequency and save to our table as $cf$. To do this, we sum up the frequency $f$ in the ascending ordered values of $x$ (lowest value to highest value). Note that in the R code using `library(dplyr)`, we are ordering x in __descending__ order due to the vocabulary of `tidyverse` context (In `tidyverse` table, we are ordering the table rows from top to bottom. Hence, having lowest value of $x$ as first row and highest value of $x$ on the last row is arranging table in descending order).
+
+```{r chocochip-freq-table-step4-echo, eval=FALSE, echo=TRUE}
+# Step 4
+df_freq <- df_freq %>% 
+  arrange(desc(x)) %>% # cumulative sum requires ordered x from smallest to highest
+  mutate(cf = cumsum(f)) %>% 
+  arrange(x)
+```
+
 
 
 
