@@ -32,7 +32,7 @@ an idealization of the world
 
 ---
 
-**Science proves in negative direction**. Our understanding of the world changes by showing that the existing scientific _"fact"_ is _"false"_ and other **_alternative hypotheses_** are better candidates to explain the observed events. Let's call this currently accepted hypothesis as **_null hypothesis_** and showing that null hypothesis is _"false"_ as **_rejecting the null hypothesis_**. (The words _"fact"_ and _"false"_ are purposely italicized to denote that these terms do not note certainty). You can optionally thing of this as a hypothesis to __null__ify or a hypothesis of 0 case, null case etc. (one of many words that mean "nothing"). The former "nullify" might make more sense than the "nothing" case if you have no prior exposure to statistics. We will see why the later case is a more popular case of thinking of the null hypothesis.
+**Science proves in negative direction**. Our understanding of the world changes by showing that the existing scientific _"fact"_ is _"false"_ and other **_alternative hypotheses_** are better candidates to explain the observed events. Let's call this currently accepted hypothesis as **_null hypothesis_** and showing that null hypothesis is _"false"_ as **_rejecting the null hypothesis_**. (The words _"fact"_ and _"false"_ are purposely italicized to denote that these terms do not note certainty). You can optionally thing of this as a hypothesis to "null"-ify or a hypothesis of 0 case, null case etc. (one of many words that mean "nothing"). The former "nullify" might make more sense than the "nothing" case if you have no prior exposure to statistics. We will see why the later case is a more popular case of thinking of the null hypothesis.
 
 ---
 

@@ -1,0 +1,58 @@
+## Research Design
+
+https://www4.uwsp.edu/psych/mp/c/p300.htm
+
+We assume that the universe is orderly, and events have specific causes. We use the scientific method to study the universe
+
+<h3>The General Procedures for the Scientific Method</h3>
+
+1. Ask a question about the world and identify relevant terms needed to ask the question.
+
+2. Operationalize the relevant terms.
+_"Operationalize"_: a concept defined by how we measure the terms of interest. Usually involves putting a number on an abstract concept, but doesn't have to be a number either.
+
+3. Pick a research method
+
+4. Collect & analyze data
+   
+<h3> Research Methods </h3>
+
+These differ in the kinds of information about behavior they yield, as well as in the types of behavior to which they are best suited for studying. We will look at five different methods. Note that they are not mutually exclusive.
+
+1. **Observational**
+AKA systemic observation or naturalistic observation.
+It is a systematic method for observing behavior as it naturally occurs. This method is characterized by:
+<br/>
+    - **Unobtrusiveness** - subjects are unaware that they are being observed
+    - **Naturalness** - subjects are "at home" and thus assumed to behave as natural as possible
+    - **Systematic Recording** - Behavior is measure and/or counted.
+<br/>
+For example,  
+&ensp;_frequencies_ : how many  
+&ensp;_duration_ : how long  
+&ensp;_latentcies_ : how long until  
+etc. are recorded for operationally defined behaviors  
+<br/>
+Since researchers are observing and measuring behaviors, there might be differences between observers in agreement. The measure of how reliable operationalized measures are called, unsurprisingly, _reliability_.
+
+2. **Surveys**
+Gathering a information through questionaires, interviews, etc. on a subset of population of interest. This method is characterized by:
+<br/>
+    - Sampling a subset of population and measuring these subset (since measuring the whole population is impossible and/or prohibitively costly)
+<br/>
+Things to consider:
+<br/>
+- **Sampling adequacy**
+
+3. **Case Studies**
+An individual or small group of individuals of interest is studied in detail. These individuals or small group of individualsare called a _cohort_. This is characterized by two main ways of performing case studies:
+<br/>
+    - **Retrospective** - looks back at past events of the cohorts.
+<br/>
+Note that we never measured anything in the past. We ask the individuals (and/or people around them, if relevant to the study) about the cohort's past behaviors. The reliability of this sort of data also depends on the ability for the subject to recall memories.
+    - **Longitudinal** or **Proactive** - follow events as they occur.
+<br/>We first identify cohorts and continue to study the same cohort for some period of time. This sort of data are very accurate but very costly to do in large scale. Note that many individuals in the cohorts are expected to fall out of the study, so we would have to start with large population. If we are studying a condition that occurs at adulthood and are interested in measuring since birth but we don't know if a baby would have this condition in the future, then we would have to appropriately have very large cohort to increase our likelihood of capturing individuals of interest by the end of the study.
+<br/><br/>
+For example schizophrenia that occurs about 1% of the population between age 15 and 35. We want to have 10 subjects with schizophrenia at the end of 35 year study. We should start with 1000 babies and hope for the best that no one drops out (unrealistic, for sure).
+
+4. **Experimental Method**
