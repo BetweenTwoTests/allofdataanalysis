@@ -1,9 +1,96 @@
 ## Factors and Groups
 
-You often see terms like _between groups_ and _within groups_. What are they and how do they relate to experiment design?
+```{r 01-04-setup, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(kableExtra)
+```
+
+You often see terms like _between-subject and _within-subject_ What are they and how do they relate to experiment design?
 
 
-<h3>One IV with two levels vs DV</h3>
+<h3>One IV vs DV</h3>
 
+Subjects are measured on DV and belongs to one of two groups as denoted by IV level value. In this example, IV, let's say `treatment`, has two levels: _control_ and _experiment_. If there are more than 2 levels (e.g. subject belongs to one of three levels _control_, _experiment 1_, or _experiment 2_), then such experiment would still fall under "one IV" case.
+<br/>
+<br/>
+In a table representation, the cell values are generally the average $\overline{y}$ of the measured DV (where $y$ is the DV). The subscripts distinguish which subject ($i$) and groups ($j$) the variable $y_{ij}$ refers to.
+
+- For example, for an experiment with $n_1$ number of subjects in `Group 1` ($j = 1$) and $n_2$ number of subjects in `Group 2` ($j = 2$), <br/>
+there are $\langle y_{1,1}, y_{2,1}, y_{3,1}, ..., y_{n_1, 1}\rangle$ measurements associated with subjects in `Group 1`, and <br/>
+there are $\langle y_{1,2}, y_{2,2}, y_{3,2}, ..., y_{n_2, 2}\rangle$ measurements associated with subjects in `Group 2`.
+
+When it is obvious that first subscript (subject index) and second subscript (group index) is obviously distinguishable, the commas between the indices are omitted. When we aggregate over the subjects (as we are doing with averages), we often put a dot $\bullet$ in place of the $i$ as a placeholder.
+
+```{r one-IV-two-levels-vs-DV, echo = FALSE}
+df_oneIV <- tribble(
+  ~Control  , ~Experiment,
+  "$\\overline{y}_{\\bullet 1}$",   "$\\overline{y}_{\\bullet 2}$"
+)
+df_oneIV <- as.data.frame(df_oneIV)
+rownames(df_oneIV) <- c("DV")
+
+col_width <- "1.5 in"
+kable(df_oneIV, align = "c") %>% 
+  kable_styling(c("striped", "bordered"), full_width = F) %>%
+  add_header_above(c(" " = 1, "IV 1 (Treament)" = 2)) %>% 
+  column_spec(seq_along(df_oneIV), width = col_width, width_min = col_width, width_max = col_width)
+```
+
+You can also be more explicit and say $\overline{y}_{\bullet,Control}$, $\overline{y}_{\bullet,Teatment}$ instead of $\overline{y}_{\bullet 1}$, $\overline{y}_{\bullet 2}$, but writing out numbered index instead of full level name is more practical if it is unambiguous that what 1 and 2 refers to. The dot ($\bullet$) is also sometimes omitted if it is obvious to do so and if it is acceptable in certain field of study.
 
 <h3>Two IVs with two levels vs DV</h3>
+
+When we add another IV, we can apply the same logic as 1 IV case, except the rows in the table now represent IV levels. This is called _*factorial*_ design.
+
+```{r two-IVs-two-levels-vs-DV, echo = FALSE}
+df_twoIV <- tribble(
+  ~""            ,       ~"",               ~Control,            ~Experiment,
+  "IV2 (Sex)" ,    "Male", "$\\overline{y}_{11}$", "$\\overline{y}_{12}$",
+  "IV2 (Sex)" ,  "Female", "$\\overline{y}_{21}$", "$\\overline{y}_{22}$"
+)
+df_twoIV <- as.data.frame(df_twoIV)
+
+kable(df_twoIV, align = "c") %>%
+  kable_styling(c("striped", "bordered"), full_width = F) %>%
+  column_spec(1, bold = T) %>%
+  column_spec(2, border_right = T)  %>% 
+  add_header_above(c(" " = 1, " " = 1, "IV 1 (Treament)" = 2)) %>% 
+  collapse_rows(columns = 1, valign = "middle")
+```
+
+With 2 IVs, there are three research questions (one for each IV and their interaction):
+
+1. Does IV~1~ have an effect on the DV? (Not accounting for any other variables, such as IV~2~)
+<br/>For example if DV is student's GPA and IV~1~ is traditional vs novel teaching method, does the teaching method effect GPA?
+
+2. Does IV~2~ have an effect on the DV? (Not accounting for any other variables, such as IV~1~).
+<br/><br/>
+For example if DV is student's GPA and IV~2~ is student's sex, is student sex related to differences in GPA? Note that we do not use the word `effect` here because student's sex is demographic information about a student that researcher did not manipulate. Such variable is called _ex post facto_.
+<br/><br/>
+Such _ex post facto_ research design and is considered to be a quasi-experimental design. This variable is measuring characteristic or trait about the subject that already existed prior to researcher's intervention (`Treatment`), and using groups from such variable to compare the differences in DV is "after the fact" research.
+
+3. Does effect IV~1~ have on DV *depend* on the value IV~2~? Conversely, does effect IV~2~ have on DV *depend* on the value of IV~1~?
+
+<h3>Factors, Groups, and <i>Between-Subject Design</i> vs <i>Within-Subject Design</i></h3>
+
+_*Factor*_ happens to be a synomym for IV when it takes a fixed number of values (levels). This term has a slightly deeper meaning, but let's just simplify things and say factor variable is a variable that one of the possible categorical values.
+
+We saw that IV with 2 levels can split our subjects into two groups. If the IV had 3 or mor possible levels, then we can obviously split into 3 or more groups. In experimental design. the number of levels do not matter as much as how many IVs we have.
+
+- *Between-Subject Design*: Experimental treatments are given to different groups of subject -- i.e. no subject can receive more than one treatment at the same time.
+<br/>
+In [Teacher Rating Case Study](http://onlinestatbook.com/2/case_studies/ratings.html), there is 1 IV with 2 conditions (instructor review) and 1 DV (professor rating). Students (subjects) were split into one of the two groups by IV / factor. Comparing the mean DV of one group to the mean DV of another group is effectively a comparison between (group of subjects in one condtion) vs (group of subjects in another condition). 
+<br/>
+Two conditions only vary by whether or not IV determined which group the subjects were assigned to. If there were no differences among subjects _between groups_, then we can interpret the IV directly effecting mean difference. If for some reason one group had particularly generous students who rated professors highly regardless, then we don't know if the mean difference in professor rating is due to the effect of instructor review condition (IV) or because of generous students. If we randomly assigned which condition a student was exposed to, then we can try to limit accidentally putting all the generous students into one group. However, this does not guarantee that there will not be any differences _between groups_. There could be another factor unknown to the researcher that is creating differences between groups.
+
+- *Multi-factor Between-Subject Design*: same thing as Between-Subject Design with multiple IVs.
+
+- *Within-Subject Design*: Unlike Between-Subject Design where a subject is exposed to only one of the levels for a factor (or unique combination of factors in Multi-factor Between Subject Design), each subject is exposed to all levels of a factor. This is done via applying each factor level to each subject in order. Obviously, this design is not possible for all types of factors. Sometimes once a treatment is applied, there's no reasonable way of "removing" the treatment. Time between each treatment also comes into play here.
+<br/>
+The order of application of factor level can also become confounding, so we _*counterbalance*_ by applying factor levels in different order for different subjects. When we consider all the subjects, the number of times a specific order was applied should be same for all possible orders.
+<br/>
+Because each subject is measured multiple times after different factor levels are applied, this design is often called "repeated measures" design. Within-Subject Design has an advantage that individual differences in subjects' overall levels of performance are controlled. Meaning the effect of individual subject differences on DV are removed because each subject essentially serves as its own control (e.g. each subject received both control and treatment level. The difference in DV taken after each treatment can be attributed to the most recent factor, ignoring the baseline of other subjects).
+
+---
+
+http://onlinestatbook.com/2/research_design/designs.html

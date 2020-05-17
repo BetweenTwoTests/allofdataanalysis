@@ -161,6 +161,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="examples-of-h_0" class="section level2">
 <h2><span class="header-section-number">1.2</span> Examples of <span class="math inline">\(H_0\)</span></h2>
+<p>Examples to clarify null hypothesis:</p>
+<p>Your friend claims that he is very good at guessing the answer to a 5-choice multiple choice questions. If given the chance, he claims that he can guess at every single question without even looking at the question and its choices (which would create a random guessing scenario without him being able to eliminate some of the choices to make “educated guessing”). You are obviously don’t believe that he will be able to get all answers correct, so you give him a test with 10 questions, each with 5 choices.</p>
+<ul>
+<li>What is the null hypothesis?</li>
+</ul>
+<p>In this test where you friend randomly guessed at all 10 questions, you would expect him to get approximately 20% correct. This is your default case, driven by what you know about basic probability. So you state that <span class="math inline">\(H_0: p = \frac{1}{5}\)</span> where <span class="math inline">\(p\)</span> is the percentage score for your test.</p>
+<ul>
+<li>What is the alternative hypothesis?</li>
+</ul>
+<p>If we followed the conventional wisdom of stating the alternative as complement of the null, then <span class="math inline">\(H_a: p \neq \frac{1}{5}\)</span>. You run your experiment and collect the result as <span class="math inline">\(p_{friend}\)</span>. You plug these 3 pieces of information to your favorite statistics software <strong><em>cough</em></strong> <em>R</em> <strong><em>cough</em></strong> and gets the result of your hypothesis test using <em>statistics</em>. (You actually would need more than these 3 pieces of information. More on that later too). The software says says “reject the null hypothesis and accept the alternative hypothesis”. You are in shock. Maybe statistic technique you used was wrong? Maybe he was telling the truth and he is a clairvoyant who knows the answers to everything. You start to have existential crisis.</p>
+<p>But wait, take a look at the <span class="math inline">\(H_a\)</span>. It says the test score is not equal to <span class="math inline">\(1/5\)</span>. Under this alternative hypothesis, your friend could have gotten all the questions wrong or all the questions right. The former would imply he is not a clairvoyant while the latter does imply he is. Stated in terms of formula, our alternative hypothesis could also be <span class="math inline">\(H_a: p &lt; \frac{1}{5}\)</span> or <span class="math inline">\(H_a: p &gt; \frac{1}{5}\)</span>. Since we are looking for evidence that your friend is clairvoyant, we should have used the latter alternative hypothesis.</p>
+<p>You run your statistical software again with the new alternative hypothesis, <span class="math inline">\(H_a: p &gt; \frac{1}{5}\)</span>. The software says “failed to reject the null hypothesis”. Your friend is in an uproar and accurse of being a statistical hack. ~Clearly both of you must enroll in graduate program in statistics to figure out who is right.~</p>
 
 </div>
             </section>

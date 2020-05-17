@@ -1,1 +1,17 @@
 ## Examples of $H_0$
+
+Examples to clarify null hypothesis:
+
+Your friend claims that he is very good at guessing the answer to a 5-choice multiple choice questions. If given the chance, he claims that he can guess at every single question without even looking at the question and its choices (which would create a random guessing scenario without him being able to eliminate some of the choices to make "educated guessing"). You are obviously don't believe that he will be able to get all answers correct, so you give him a test with 10 questions, each with 5 choices.  
+  
+- What is the null hypothesis?
+
+In this test where you friend randomly guessed at all 10 questions, you would expect him to get approximately 20% correct. This is your default case, driven by what you know about basic probability. So you state that $H_0: p = \frac{1}{5}$ where $p$ is the percentage score for your test.
+
+- What is the alternative hypothesis?
+
+If we followed the conventional wisdom of stating the alternative as complement of the null, then $H_a: p \neq \frac{1}{5}$. You run your experiment and collect the result as $p_{friend}$. You plug these 3 pieces of information to your favorite statistics software **_cough_** _R_ **_cough_** and gets the result of your hypothesis test using _statistics_. (You actually would need more than these 3 pieces of information. More on that later too). The software says says "reject the null hypothesis and accept the alternative hypothesis". You are in shock. Maybe statistic technique you used was wrong?  Maybe he was telling the truth and he is a clairvoyant who knows the answers to everything. You start to have existential crisis.
+
+But wait, take a look at the $H_a$. It says the test score is not equal to $1/5$. Under this alternative hypothesis, your friend could have gotten all the questions wrong or all the questions right. The former would imply he is not a clairvoyant while the latter does imply he is. Stated in terms of formula, our alternative hypothesis could also be $H_a: p < \frac{1}{5}$ or $H_a: p > \frac{1}{5}$. Since we are looking for evidence that your friend is clairvoyant, we should have used the latter alternative hypothesis.
+
+You run your statistical software again with the new alternative hypothesis, $H_a: p > \frac{1}{5}$. The software says "failed to reject the null hypothesis". Your friend is in an uproar and accurse of being a statistical hack. ~Clearly both of you must enroll in graduate program in statistics to figure out who is right.~

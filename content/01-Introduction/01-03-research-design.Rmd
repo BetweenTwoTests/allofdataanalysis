@@ -1,11 +1,10 @@
 ## Research Design
 
-```{r 01-03-setup, echo=FALSE, message=FALSE,}
+```{r 01-03-setup, echo=FALSE, message=FALSE}
 library(tidyverse)
 library(kableExtra)
 ```
 
-https://www4.uwsp.edu/psych/mp/c/p300.htm
 
 We assume that the universe is orderly, and events have specific causes. We use the scientific method to study the universe
 
@@ -33,9 +32,9 @@ These differ in the kinds of information about behavior they yield, as well as i
     - **Systematic Recording** - Behavior is measure and/or counted.
 <br/>
 For example,  
-&ensp;_frequencies_ : how many  
-&ensp;_duration_ : how long  
-&ensp;_latentcies_ : how long until  
+&nbsp;_frequencies_ : how many  
+&nbsp;_duration_ : how long  
+&nbsp;_latentcies_ : how long until  
 etc. are recorded for operationally defined behaviors  
 <br/>
 Since researchers are observing and measuring behaviors, there might be differences between observers in agreement. The measure of how reliable operationalized measures are called, unsurprisingly, _reliability_.
@@ -85,8 +84,9 @@ kable(
   column_spec(seq_along(ev_table), width = col_width, width_min = col_width, width_max = col_width)
 ```
 
-<p style="margin-left: 40px;">PS Under certain designs, we could say IV _*effects*_ DV with the word _effect_ as a verb to mean IV "results in or brings about change or consequence" to note cause & effect as apposed to _affect_ which is less stringent and to mean that IV "influences changes in" DV. Nitpicky for sure, but an important distinction. I am assuming that the experimental method would satisfy the condtions for the strong claim of _effect_.</p>
-
-<p style="margin-left: 40px;">
+<p style="margin-left: 40px;">PS Under certain designs, we could say IV _*effects*_ DV with the word _effect_ as a verb to mean IV "results in or brings about change or consequence" to note cause & effect as apposed to _affect_ which is less stringent and to mean that IV "influences changes in" DV. Nitpicky for sure, but an important distinction. I am assuming that the experimental method would satisfy the condtions for the strong claim of _effect_.
 </p>
 
+---
+
+https://www4.uwsp.edu/psych/mp/c/p300.htm

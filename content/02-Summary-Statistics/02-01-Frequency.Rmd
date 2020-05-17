@@ -5,7 +5,8 @@
 df_chips <- readRDS("data/chocochip_2019.rds")
 ```
 
-```{r 02-01-setup, echo=FALSE, message=FALSE,}
+
+```{r 02-01-setup, echo=FALSE, message=FALSE}
 library(tidyverse)
 library(kableExtra)
 ```
@@ -23,7 +24,7 @@ kable(
   ),
   booktabs = TRUE, caption = '<br/>
   Number of Chocolate Chips<br/>
-  Measured by Fall 2019 Class',
+  Measured by Fall 2019 Class'
 ) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F) %>% 
   column_spec(seq_along(df_chips), width = col_width, width_min = col_width, width_max = col_width) %>% 
@@ -84,7 +85,8 @@ df_freq <- df_freq %>%
   arrange(x)
 
 col_width <- "1 in"
-kable(df_freq) %>%
+kable(df_freq,
+      caption = '<br/>Step 3 - 4') %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), 
                 full_width = F, position = "float_right") %>% 
   column_spec(seq_along(df_freq), width = col_width, width_min = col_width, width_max = col_width) %>% 

@@ -161,13 +161,146 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="factors-and-groups" class="section level2">
 <h2><span class="header-section-number">1.4</span> Factors and Groups</h2>
-<p>You often see terms like <em>between groups</em> and <em>within groups</em>. What are they and how do they relate to experiment design?</p>
+<p>You often see terms like _between-subject and <em>within-subject</em> What are they and how do they relate to experiment design?</p>
 <h3>
-One IV with two levels vs DV
+One IV vs DV
 </h3>
+<p>Subjects are measured on DV and belongs to one of two groups as denoted by IV level value. In this example, IV, let’s say <code>treatment</code>, has two levels: <em>control</em> and <em>experiment</em>. If there are more than 2 levels (e.g. subject belongs to one of three levels <em>control</em>, <em>experiment 1</em>, or <em>experiment 2</em>), then such experiment would still fall under “one IV” case.
+<br/>
+<br/>
+In a table representation, the cell values are generally the average <span class="math inline">\(\overline{y}\)</span> of the measured DV (where <span class="math inline">\(y\)</span> is the DV). The subscripts distinguish which subject (<span class="math inline">\(i\)</span>) and groups (<span class="math inline">\(j\)</span>) the variable <span class="math inline">\(y_{ij}\)</span> refers to.</p>
+<ul>
+<li>For example, for an experiment with <span class="math inline">\(n_1\)</span> number of subjects in <code>Group 1</code> (<span class="math inline">\(j = 1\)</span>) and <span class="math inline">\(n_2\)</span> number of subjects in <code>Group 2</code> (<span class="math inline">\(j = 2\)</span>), <br/>
+there are <span class="math inline">\(\langle y_{1,1}, y_{2,1}, y_{3,1}, ..., y_{n_1, 1}\rangle\)</span> measurements associated with subjects in <code>Group 1</code>, and <br/>
+there are <span class="math inline">\(\langle y_{1,2}, y_{2,2}, y_{3,2}, ..., y_{n_2, 2}\rangle\)</span> measurements associated with subjects in <code>Group 2</code>.</li>
+</ul>
+<p>When it is obvious that first subscript (subject index) and second subscript (group index) is obviously distinguishable, the commas between the indices are omitted. When we aggregate over the subjects (as we are doing with averages), we often put a dot <span class="math inline">\(\bullet\)</span> in place of the <span class="math inline">\(i\)</span> as a placeholder.</p>
+<table class="table table-striped table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+IV 1 (Treament)
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Control
+</th>
+<th style="text-align:center;">
+Experiment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 1.5 in; min-width: 1.5 in; max-width: 1.5 in; ">
+DV
+</td>
+<td style="text-align:center;width: 1.5 in; min-width: 1.5 in; max-width: 1.5 in; ">
+<span class="math inline">\(\overline{y}_{\bullet 1}\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\overline{y}_{\bullet 2}\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>You can also be more explicity and say <span class="math inline">\(\overline{y}_{\bullet,Control}\)</span>, <span class="math inline">\(\overline{y}_{\bullet,Teatment}\)</span> instead of <span class="math inline">\(\overline{y}_{\bullet 1}\)</span>, <span class="math inline">\(\overline{y}_{\bullet 2}\)</span>, but writing out numbered index instead of full level name is more practical if it is unambigous that what 1 and 2 refers to. The dot (<span class="math inline">\(\bullet\)</span>) is also sometimes omitted if it is obvious to do so and if it is acceptable in certain field of study.</p>
 <h3>
 Two IVs with two levels vs DV
 </h3>
+<p>When we add another IV, we can apply the same logic as 1 IV case, except the rows in the table now represent IV levels. This is called <em><em>factorial</em></em> design.</p>
+<table class="table table-striped table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+IV 1 (Treament)
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+Control
+</th>
+<th style="text-align:center;">
+Experiment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;vertical-align: middle !important;" rowspan="2">
+IV2 (Sex)
+</td>
+<td style="text-align:center;border-right:1px solid;">
+Male
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\overline{y}_{11}\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\overline{y}_{12}\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-right:1px solid;">
+Female
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\overline{y}_{21}\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\overline{y}_{22}\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>With 2 IVs, there are three research questions (one for each IV and their interaction):</p>
+<ol style="list-style-type: decimal">
+<li><p>Does IV<sub>1</sub> have an effect on the DV? (Not accounting for any other variables, such as IV<sub>2</sub>)
+<br/>For example if DV is student’s GPA and IV<sub>1</sub> is traditional vs novel teaching method, does the teaching method effect GPA?</p></li>
+<li><p>Does IV<sub>2</sub> have an effect on the DV? (Not accounting for any other variables, such as IV<sub>1</sub>).
+<br/><br/>
+For example if DV is student’s GPA and IV<sub>2</sub> is student’s sex, is student sex related to differences in GPA? Note that we do not use the word <code>effect</code> here because student’s sex is demographic information about a student that researcher did not manipulate. Such variable is called <em>ex post facto</em>.
+<br/><br/>
+Such <em>ex post facto</em> research design and is considered to be a quasi-experimental design. This variable is measuring characteristic or trait about the subject that already existed prior to researcher’s intervention (<code>Treatment</code>), and using groups from such variable to compare the differences in DV is “after the fact” research.</p></li>
+<li><p>Does effect IV<sub>1</sub> have on DV <em>depend</em> on the value IV<sub>2</sub>? Conversely, does effect IV<sub>2</sub> have on DV <em>depend</em> on the value of IV<sub>1</sub>?</p></li>
+</ol>
+<h3>
+Factors, Groups, and <i>Between-Subject Design</i> vs <i>Within-Subject Design</i>
+</h3>
+<p><em><em>Factor</em></em> happens to be a synomym for IV when it takes a fixed number of values (levels). This term has a slightly deeper meaning, but let’s just simplify things and say factor variable is a variable that one of the possible categorical values.</p>
+<p>We saw that IV with 2 levels can split our subjects into two groups. If the IV had 3 or mor possible levels, then we can obviously split into 3 or more groups. In experimental design. the number of levels do not matter as much as how many IVs we have.</p>
+<ul>
+<li><p><em>Between-Subject Design</em>: Experimental treatments are given to different groups of subject – i.e. no subject can receive more than one treatment at the same time.
+<br/>
+In <a href="http://onlinestatbook.com/2/case_studies/ratings.html">Teacher Rating Case Study</a>, there is 1 IV with 2 conditions (instructor review) and 1 DV (professor rating). Students (subjects) were split into one of the two groups by IV / factor. Comparing the mean DV of one group to the mean DV of another group is effectively a comparison between (group of subjects in one condtion) vs (group of subjects in another condition).
+<br/>
+Two conditions only vary by whether or not IV determined which group the subjects were assigned to. If there were no differences among subjects <em>between groups</em>, then we can interpret the IV directly effecting mean difference. If for some reason one group had particularly generous students who rated professors highly regardless, then we don’t know if the mean difference in professor rating is due to the effect of instructor review condition (IV) or because of generous students. If we randomly assigned which condition a student was exposed to, then we can try to limit accidentally putting all the generous students into one group. However, this does not guarantee that there will not be any differences <em>between groups</em>. There could be another factor unknown to the researcher that is creating differences between groups.</p></li>
+<li><p><em>Multi-factor Between-Subject Design</em>: same thing as Between-Subject Design with multiple IVs.</p></li>
+<li><p><em>Within-Subject Design</em>: Unlike Between-Subject Design where a subject is exposed to only one of the levels for a factor (or unique combination of factors in Multi-factor Between Subject Design), each subject is exposed to all levels of a factor. This is done via applying each factor level to each subject in order. Obviously, this design is not possible for all types of factors. Sometimes once a treatment is applied, there’s no reasonable way of “removing” the treatment. Time between each treatment also comes into play here.
+<br/>
+The order of application of factor level can also become confounding, so we <em><em>counterbalance</em></em> by applying factor levels in different order for different subjects. When we consider all the subjects, the number of times a specific order was applied should be same for all possible orders.
+<br/>
+Because each subject is measured multiple times after different factor levels are applied, this design is often called “repeated measures” design. Within-Subject Design has an advantage that individual differences in subjects’ overall levels of performance are controlled. Meaning the effect of individual subject differences on DV are removed because each subject essentially serves as its own control (e.g. each subject received both control and treatment level. The difference in DV taken after each treatment can be attributed to the most recent factor, ignoring the baseline of other subjects).</p></li>
+</ul>
+<hr />
+<p><a href="http://onlinestatbook.com/2/research_design/designs.html" class="uri">http://onlinestatbook.com/2/research_design/designs.html</a></p>
 
 </div>
 <!-- </div> -->
