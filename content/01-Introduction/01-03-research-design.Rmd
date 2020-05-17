@@ -1,5 +1,10 @@
 ## Research Design
 
+```{r 01-03-setup, echo=FALSE, message=FALSE,}
+library(tidyverse)
+library(kableExtra)
+```
+
 https://www4.uwsp.edu/psych/mp/c/p300.htm
 
 We assume that the universe is orderly, and events have specific causes. We use the scientific method to study the universe
@@ -19,9 +24,9 @@ _"Operationalize"_: a concept defined by how we measure the terms of interest. U
 
 These differ in the kinds of information about behavior they yield, as well as in the types of behavior to which they are best suited for studying. We will look at five different methods. Note that they are not mutually exclusive.
 
-1. **Observational**
-AKA systemic observation or naturalistic observation.
-It is a systematic method for observing behavior as it naturally occurs. This method is characterized by:
+1. **Observational** It is a systematic method for observing behavior as it naturally occurs.
+<br/>aka systemic observation or naturalistic observation.
+ This method is characterized by:
 <br/>
     - **Unobtrusiveness** - subjects are unaware that they are being observed
     - **Naturalness** - subjects are "at home" and thus assumed to behave as natural as possible
@@ -56,3 +61,32 @@ Note that we never measured anything in the past. We ask the individuals (and/or
 For example schizophrenia that occurs about 1% of the population between age 15 and 35. We want to have 10 subjects with schizophrenia at the end of 35 year study. We should start with 1000 babies and hope for the best that no one drops out (unrealistic, for sure).
 
 4. **Experimental Method**
+This is what we most likely are talking about when we say an "experiment to test effect of X on Y". If randomized control trial (RCT) is used, then this method can provide strong evidence for cause & effect.
+<br/>
+    - **Independent Variable** (IV) - Variable that we can select and manipulate.
+<br/>IV must have at least two levels (categorical) or values (numerical) that IV can take. If IV has only one level or value, then that IV is not useful at all.
+    - **Dependent Variable** (DV) - Variable that we measure and is interested in making inferences about. Sometimes callec _criterion variable_.
+    - **Extraneous Variable** (EV) - Variable other than IV that can influence the DV. If an EV effects the groups in an experiment (groups determined by the levels of IV, e.g. `treatment` IV with levels `control` and `drug`), then we do not know whether changes in DV are explained by IV or EV. Usually both IVs and EVs effect the variability in DV, and we call such Evs _confounding_ variable. Table \@ref(tab:ev-table) shows possible effects of EV on DV. Pay close attention to the effect on groups created by IV (e.g. `control` and `drug`). 
+<br/>
+
+```{r ev-table, echo=FALSE}
+ev_table <- tribble(
+    ~`Possible Effect on DV`, ~`Is it a problem?`, ~`Statistical term`,
+    "EV has no effect on either groups", "Not a problem", "?",
+    "EV effects all the groups in the same manner", "Not a problem", "fixed effect (?)",
+    "EV effects groups differentially based on which level the subject belongs to", "Not a problem", "interaction effect (?)"
+)
+col_width <- c("4.5 in", "2 in", "2 in")
+kable(
+  ev_table,
+  booktabs = TRUE, caption = '<br/>EV & IV on DV',
+) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F) %>% 
+  column_spec(seq_along(ev_table), width = col_width, width_min = col_width, width_max = col_width)
+```
+
+<p style="margin-left: 40px;">PS Under certain designs, we could say IV _*effects*_ DV with the word _effect_ as a verb to mean IV "results in or brings about change or consequence" to note cause & effect as apposed to _affect_ which is less stringent and to mean that IV "influences changes in" DV. Nitpicky for sure, but an important distinction. I am assuming that the experimental method would satisfy the condtions for the strong claim of _effect_.</p>
+
+<p style="margin-left: 40px;">
+</p>
+

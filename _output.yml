@@ -3,7 +3,7 @@ bookdown::gitbook:
   split_by: section+number
   config:
     toc:
-      collapse: none
+      collapse: section
       before: |
         <li><a href="./">All of Data Analysis</a></li>
     edit:
@@ -12,7 +12,10 @@ bookdown::gitbook:
     view:
       link: https://github.com/BetweenTwoTests/betweentwotests-book/blob/master/%s
     download: yes
+    search: yes
+    info: yes
     sharing:
-      github: yes      
+      github: yes
+      linkedin: yes
       facebook: no
       twitter: no

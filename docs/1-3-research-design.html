@@ -24,7 +24,7 @@
 <meta name="author" content="Leon Kim" />
 
 
-<meta name="date" content="2020-05-15" />
+<meta name="date" content="2020-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="1-2-examples-of-h-0.html"/>
-<link rel="next" href="2-summary-statistics.html"/>
+<link rel="next" href="1-4-factors-and-groups.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -137,6 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1" data-path="1-1-hypothesis.html"><a href="1-1-hypothesis.html"><i class="fa fa-check"></i><b>1.1</b> Hypothesis</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-examples-of-h-0.html"><a href="1-2-examples-of-h-0.html"><i class="fa fa-check"></i><b>1.2</b> Examples of <span class="math inline">\(H_0\)</span></a></li>
 <li class="chapter" data-level="1.3" data-path="1-3-research-design.html"><a href="1-3-research-design.html"><i class="fa fa-check"></i><b>1.3</b> Research Design</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-factors-and-groups.html"><a href="1-4-factors-and-groups.html"><i class="fa fa-check"></i><b>1.4</b> Factors and Groups</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-summary-statistics.html"><a href="2-summary-statistics.html"><i class="fa fa-check"></i><b>2</b> Summary Statistics</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-frequency.html"><a href="2-1-frequency.html"><i class="fa fa-check"></i><b>2.1</b> Frequency</a></li>
@@ -177,9 +178,9 @@ Research Methods
 </h3>
 <p>These differ in the kinds of information about behavior they yield, as well as in the types of behavior to which they are best suited for studying. We will look at five different methods. Note that they are not mutually exclusive.</p>
 <ol style="list-style-type: decimal">
-<li><strong>Observational</strong>
-AKA systemic observation or naturalistic observation.
-It is a systematic method for observing behavior as it naturally occurs. This method is characterized by:
+<li><strong>Observational</strong> It is a systematic method for observing behavior as it naturally occurs.
+<br/>aka systemic observation or naturalistic observation.
+This method is characterized by:
 <br/>
 <ul>
 <li><strong>Unobtrusiveness</strong> - subjects are unaware that they are being observed</li>
@@ -220,18 +221,84 @@ Note that we never measured anything in the past. We ask the individuals (and/or
 <br/><br/>
 For example schizophrenia that occurs about 1% of the population between age 15 and 35. We want to have 10 subjects with schizophrenia at the end of 35 year study. We should start with 1000 babies and hope for the best that no one drops out (unrealistic, for sure).</li>
 </ul></li>
-<li><strong>Experimental Method</strong></li>
+<li><strong>Experimental Method</strong>
+This is what we most likely are talking about when we say an “experiment to test effect of X on Y”. If randomized control trial (RCT) is used, then this method can provide strong evidence for cause &amp; effect.
+<br/>
+<ul>
+<li><strong>Independent Variable</strong> (IV) - Variable that we can select and manipulate.
+<br/>IV must have at least two levels (categorical) or values (numerical) that IV can take. If IV has only one level or value, then that IV is not useful at all.</li>
+<li><strong>Dependent Variable</strong> (DV) - Variable that we measure and is interested in making inferences about. Sometimes callec <em>criterion variable</em>.</li>
+<li><strong>Extraneous Variable</strong> (EV) - Variable other than IV that can influence the DV. If an EV effects the groups in an experiment (groups determined by the levels of IV, e.g. <code>treatment</code> IV with levels <code>control</code> and <code>drug</code>), then we do not know whether changes in DV are explained by IV or EV. Usually both IVs and EVs effect the variability in DV, and we call such Evs <em>confounding</em> variable. Table <a href="1-3-research-design.html#tab:ev-table">1.1</a> shows possible effects of EV on DV. Pay close attention to the effect on groups created by IV (e.g. <code>control</code> and <code>drug</code>).
+<br/></li>
+</ul></li>
 </ol>
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:ev-table">Table 1.1: </span><br>EV &amp; IV on DV
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Possible Effect on DV
+</th>
+<th style="text-align:left;">
+Is it a problem?
+</th>
+<th style="text-align:left;">
+Statistical term
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 4.5 in; min-width: 4.5 in; max-width: 4.5 in; ">
+EV has no effect on either groups
+</td>
+<td style="text-align:left;width: 4.5 in; min-width: 4.5 in; max-width: 4.5 in; ">
+Not a problem
+</td>
+<td style="text-align:left;width: 4.5 in; min-width: 4.5 in; max-width: 4.5 in; ">
+?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5 in; min-width: 4.5 in; max-width: 4.5 in; ">
+EV effects all the groups in the same manner
+</td>
+<td style="text-align:left;width: 4.5 in; min-width: 4.5 in; max-width: 4.5 in; ">
+Not a problem
+</td>
+<td style="text-align:left;width: 4.5 in; min-width: 4.5 in; max-width: 4.5 in; ">
+fixed effect (?)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5 in; min-width: 4.5 in; max-width: 4.5 in; ">
+EV effects groups differentially based on which level the subject belongs to
+</td>
+<td style="text-align:left;width: 4.5 in; min-width: 4.5 in; max-width: 4.5 in; ">
+Not a problem
+</td>
+<td style="text-align:left;width: 4.5 in; min-width: 4.5 in; max-width: 4.5 in; ">
+interaction effect (?)
+</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-left: 40px;">
+PS Under certain designs, we could say IV <em><em>effects</em></em> DV with the word <em>effect</em> as a verb to mean IV “results in or brings about change or consequence” to note cause &amp; effect as apposed to <em>affect</em> which is less stringent and to mean that IV “influences changes in” DV. Nitpicky for sure, but an important distinction. I am assuming that the experimental method would satisfy the condtions for the strong claim of <em>effect</em>.
+</p>
+<p style="margin-left: 40px;">
+</p>
 
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="1-2-examples-of-h-0.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="2-summary-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="1-4-factors-and-groups.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
@@ -250,7 +317,7 @@ gitbook.start({
 "github": true,
 "facebook": false,
 "twitter": false,
-"linkedin": false,
+"linkedin": true,
 "weibo": false,
 "instapaper": false,
 "vk": false,
@@ -275,8 +342,10 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "none"
-}
+"collapse": "section"
+},
+"search": true,
+"info": true
 });
 });
 </script>

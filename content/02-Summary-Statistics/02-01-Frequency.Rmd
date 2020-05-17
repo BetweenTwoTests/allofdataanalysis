@@ -5,8 +5,6 @@
 df_chips <- readRDS("data/chocochip_2019.rds")
 ```
 
-<script src="js/hideOutput.js"></script>
-
 ```{r 02-01-setup, echo=FALSE, message=FALSE,}
 library(tidyverse)
 library(kableExtra)
@@ -89,7 +87,8 @@ col_width <- "1 in"
 kable(df_freq) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), 
                 full_width = F, position = "float_right") %>% 
-  column_spec(seq_along(df_freq), width = col_width, width_min = col_width, width_max = col_width)
+  column_spec(seq_along(df_freq), width = col_width, width_min = col_width, width_max = col_width) %>% 
+  footnote(general = "Note the 0 in frequency column\nwhen `x` was not measured.")
 ```
 
 Note that some frequency counts are 0, for exampe $x = 31$. This is because none of the observers (33 students) did not measure instances of 31 chocolate chips in their cookies. This does not mean Chips Ahoy company does not make cookies with 31 chocolate chips. It just means that we failed to observe such instance due to __sampling error__. If we had measured all the cookies produced by the company (i.e. __*population*__ of all cookies) and repeated the measurement experiment, we would know whether there truly wasn't a single cookie with 31 chips. In our __*sample*__ of 33 cookies, we don't know if $f = 0$ if $x = 31$ is due to chance. In the __*population*__ of all cookies, we would know for a fact that $f = 0$ if $x = 31$ because we have the measurement for the entire population.  

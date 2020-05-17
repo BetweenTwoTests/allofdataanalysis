@@ -25,3 +25,5 @@ description: "All of Data Analysis"
 # About {-}
 
 This is a reproduction of my study notes & exercises from various points of my academic and professional career in statistics. Please excuse the grandiose title. (Fans of statistics should note that the title is tongue-in-cheek reference to [this equally grandiose book title](https://www.google.com/search?q=all+of+statistics&oq=all+of+statistics) )
+
+The contents here are not meant to replace existing statistics textbooks. They are meant to fill in some of the gaps, especially in context of psychometrics.

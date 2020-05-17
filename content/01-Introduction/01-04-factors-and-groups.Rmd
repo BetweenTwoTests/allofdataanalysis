@@ -1,0 +1,9 @@
+## Factors and Groups
+
+You often see terms like _between groups_ and _within groups_. What are they and how do they relate to experiment design?
+
+
+<h3>One IV with two levels vs DV</h3>
+
+
+<h3>Two IVs with two levels vs DV</h3>
