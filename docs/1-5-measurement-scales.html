@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter2 Summary Statistics | All of Data Analysis</title>
-  <meta name="description" content="Chapter2 Summary Statistics | All of Data Analysis" />
+  <title>1.5 Measurement Scales | All of Data Analysis</title>
+  <meta name="description" content="1.5 Measurement Scales | All of Data Analysis" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter2 Summary Statistics | All of Data Analysis" />
+  <meta property="og:title" content="1.5 Measurement Scales | All of Data Analysis" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="http://betweentwotests.com/allofdataanalysis/" />
   
-  <meta property="og:description" content="Chapter2 Summary Statistics | All of Data Analysis" />
+  <meta property="og:description" content="1.5 Measurement Scales | All of Data Analysis" />
   <meta name="github-repo" content="BetweenTwoTests/betweentwotests-book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter2 Summary Statistics | All of Data Analysis" />
+  <meta name="twitter:title" content="1.5 Measurement Scales | All of Data Analysis" />
   
-  <meta name="twitter:description" content="Chapter2 Summary Statistics | All of Data Analysis" />
+  <meta name="twitter:description" content="1.5 Measurement Scales | All of Data Analysis" />
   
 
 <meta name="author" content="Leon Kim" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="1-5-measurement-scales.html"/>
-<link rel="next" href="2-1-frequency.html"/>
+<link rel="prev" href="1-4-factors-and-groups.html"/>
+<link rel="next" href="2-summary-statistics.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -160,17 +160,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="summary-statistics" class="section level1">
-<h1><span class="header-section-number">Chapter2</span> Summary Statistics</h1>
-<!--chapter:end:content/02-Summary-Statistics/02-00-Summary-Statistics.Rmd-->
+<div id="measurement-scales" class="section level2">
+<h2><span class="header-section-number">1.5</span> Measurement Scales</h2>
+<table class="table table-striped table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+Properties
+</th>
+<th style="text-align:center;">
+Valid Math Operations
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;border-right:1px solid;">
+Nominal / Categorical
+</td>
+<td style="text-align:center;">
+None
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(=\)</span>, <span class="math inline">\(\neq\)</span>, <span class="math inline">\(\lt\)</span>, <span class="math inline">\(\gt\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;border-right:1px solid;">
+Ordinal / Rank
+</td>
+<td style="text-align:center;">
+Magnitude
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(=\)</span>, <span class="math inline">\(\neq\)</span>, <span class="math inline">\(\lt\)</span>, <span class="math inline">\(\gt\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;border-right:1px solid;vertical-align: middle !important;" rowspan="2">
+Interval
+</td>
+<td style="text-align:center;">
+Magnitude
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(=\)</span>, <span class="math inline">\(\neq\)</span>, <span class="math inline">\(\lt\)</span>, <span class="math inline">\(\gt\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Interval
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(=\)</span>, <span class="math inline">\(\neq\)</span>, <span class="math inline">\(\lt\)</span>, <span class="math inline">\(\gt\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;border-right:1px solid;vertical-align: middle !important;" rowspan="3">
+Ratio
+</td>
+<td style="text-align:center;">
+Magnitude
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(=\)</span>, <span class="math inline">\(\neq\)</span>, <span class="math inline">\(\lt\)</span>, <span class="math inline">\(\gt\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Interval
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(=\)</span>, <span class="math inline">\(\neq\)</span>, <span class="math inline">\(\lt\)</span>, <span class="math inline">\(\gt\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Absolute 0
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(x_{1} / x_{2} = k\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>
+Nominal (categorical) scales
+</h3>
+<p>The categories are mutually exclusive and exhaustive. The categories have no meaning by themselves – the placement of an observation in a particular category simply indicates that it is different from observations in other categories. It does not imply one category is more or less different.</p>
+<ul>
+<li>Examples: Car model name, eye color</li>
+</ul>
+<p>Nominal cannot normally distributed.</p>
+<h3>
+Ordinal (rank) scales
+</h3>
+<p>Ordinal scales are like nominal scales with additional property of order among the categories included on the scale.</p>
+<ul>
+<li>Examples: social class, <em><em>percentile ranks</em></em>, and Olympic medal placing.</li>
+</ul>
+<p>With ordinal scales, we can talk about the order of a set of objects, but we cannot say <em>how much bigger</em> one category is to another.
+<br/>
+Ordinal cannot normally distributed.</p>
+<h3>
+Interval scales (equi-interval scales)
+</h3>
+<p>Sometimes called equi-interval scales to distinguish this level of measurement from nominal and ordinal scales.</p>
+<p>This scale can be added, subtracted, multiplied, and divided <em>without affecting the relative distances among scores.</em>. The intervals between two scores can be determined by arithmetic manipulation of the scores.</p>
+<ul>
+<li>Examples: Temperature scale like Celcius, Farenheit, Kelvin (?)</li>
+</ul>
+<p>An important characteristic of interval scales is that the zero point is arbitrary, which means that we cannot meaningfully interpret the size of particular score ratios. As a consequence of being measured on equi-units, it is possible for interval data to be normal under asymptotic assumptions. This is just a fancy way of saying that variables measured in interval scales have <em><em>central tendency</em></em> that can be measured by mode, median, or mean. Standard deviations for these variables can also be calculated.</p>
+<blockquote>
+<p>Some would argue that centeral tendency for nominal and ordinal data can be calculated via mode. For practical purposes, I think that is valid, but in purist sense, I don’t think central tendency is defined for nominal and ordinal data.</p>
+</blockquote>
+<h3>
+Ratio scales
+</h3>
+<p>Ratio scales have all the properties of interval scales with addition of an absolute zero.</p>
+<ul>
+<li>distance and time measures have genuine zero points.</li>
+</ul>
+<p>This is what people most generally mean by “numeric” column</p>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="1-5-measurement-scales.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="2-1-frequency.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="1-4-factors-and-groups.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-summary-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
@@ -201,7 +324,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/BetweenTwoTests/betweentwotests-book/edit/master/content/02-Summary-Statistics/02-01-Frequency.Rmd",
+"link": "https://github.com/BetweenTwoTests/betweentwotests-book/edit/master/content/01-Introduction/01-05-measurement-scales.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -209,7 +332,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/BetweenTwoTests/betweentwotests-book/blob/master/content/02-Summary-Statistics/02-01-Frequency.Rmd",
+"link": "https://github.com/BetweenTwoTests/betweentwotests-book/blob/master/content/01-Introduction/01-05-measurement-scales.Rmd",
 "text": null
 },
 "download": null,

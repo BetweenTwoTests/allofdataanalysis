@@ -15,5 +15,6 @@ rmd_files:
   - "content/01-Introduction/01-02-examples.Rmd"
   - "content/01-Introduction/01-03-research-design.Rmd"
   - "content/01-Introduction/01-04-factors-and-groups.Rmd"
+  - "content/01-Introduction/01-05-measurement-scales.Rmd"
   - "content/02-Summary-Statistics/02-00-Summary-Statistics.Rmd"
   - "content/02-Summary-Statistics/02-01-Frequency.Rmd"
