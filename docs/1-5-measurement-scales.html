@@ -24,7 +24,7 @@
 <meta name="author" content="Leon Kim" />
 
 
-<meta name="date" content="2020-05-18" />
+<meta name="date" content="2020-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -141,7 +141,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="1-5-measurement-scales.html"><a href="1-5-measurement-scales.html"><i class="fa fa-check"></i><b>1.5</b> Measurement Scales</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-summary-statistics.html"><a href="2-summary-statistics.html"><i class="fa fa-check"></i><b>2</b> Summary Statistics</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-1-frequency.html"><a href="2-1-frequency.html"><i class="fa fa-check"></i><b>2.1</b> Frequency</a></li>
+<li class="chapter" data-level="2.1" data-path="2-1-limits-rounding.html"><a href="2-1-limits-rounding.html"><i class="fa fa-check"></i><b>2.1</b> Limits &amp; Rounding</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-frequency.html"><a href="2-2-frequency.html"><i class="fa fa-check"></i><b>2.2</b> Frequency</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-distributions.html"><a href="3-distributions.html"><i class="fa fa-check"></i><b>3</b> Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-total-score-difficulty.html"><a href="3-1-total-score-difficulty.html"><i class="fa fa-check"></i><b>3.1</b> Total Score &amp; Difficulty</a></li>
 </ul></li>
 </ul>
 
@@ -269,13 +273,19 @@ Interval scales (equi-interval scales)
 </h3>
 <p>Sometimes called equi-interval scales to distinguish this level of measurement from nominal and ordinal scales.</p>
 <p>This scale can be added, subtracted, multiplied, and divided <em>without affecting the relative distances among scores.</em>. The intervals between two scores can be determined by arithmetic manipulation of the scores.</p>
-<ul>
-<li>Examples: Temperature scale like Celcius, Farenheit, Kelvin (?)</li>
-</ul>
 <p>An important characteristic of interval scales is that the zero point is arbitrary, which means that we cannot meaningfully interpret the size of particular score ratios. As a consequence of being measured on equi-units, it is possible for interval data to be normal under asymptotic assumptions. This is just a fancy way of saying that variables measured in interval scales have <em><em>central tendency</em></em> that can be measured by mode, median, or mean. Standard deviations for these variables can also be calculated.</p>
 <blockquote>
 <p>Some would argue that centeral tendency for nominal and ordinal data can be calculated via mode. For practical purposes, I think that is valid, but in purist sense, I don’t think central tendency is defined for nominal and ordinal data.</p>
 </blockquote>
+<ul>
+<li><p>Examples: Temperature scale like Celcius, Farenheit
+<br/>
+10 C<sup>o</sup> vs 20 C<sup>o</sup> and 20 C<sup>o</sup> vs 30 C<sup>o</sup>: the degrees are 10 units apart, but just because <span class="math inline">\(\frac{20}{10}=2\)</span>, it doesn’t mean 20 C<sup>o</sup> is $2$10 C<sup>o</sup>.
+<br/>
+Your local weather report might say today’s weather (20 C<sup>o</sup>) is twice as hot as yesterday’s weather (10 C<sup>o</sup>), but that would be wrong because Celcius scale has no concept of ratio! This has to be with the fact that there is no meaningful <span class="math inline">\(0\)</span> in Celcius. Celcius scale does have 0 to represent freezing point, but this is not a true 0 that represents absence of something, unlike Kelvin scale where 0 is complete absence of molecular motion. Therfore …</p></li>
+<li><p>Not an example: Kelvin
+<br/> Kelvin is not an interval scale. It is a <em>ratio scale</em> because it has properties of interval scale with absolute zero. If two liquids have 10 Kelvin and 20 Kelvin respectively, that does indeed mean the latter is is twice as the former.</p></li>
+</ul>
 <h3>
 Ratio scales
 </h3>

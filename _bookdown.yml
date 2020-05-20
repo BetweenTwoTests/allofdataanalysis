@@ -1,4 +1,4 @@
-book_filename: "bookdown-start"
+book_filename: "allofdataanalysis"
 chapter_name: "Chapter"
 repo: https://github.com/BetweenTwoTests/betweentwotests-book
 output_dir: docs
@@ -17,4 +17,7 @@ rmd_files:
   - "content/01-Introduction/01-04-factors-and-groups.Rmd"
   - "content/01-Introduction/01-05-measurement-scales.Rmd"
   - "content/02-Summary-Statistics/02-00-Summary-Statistics.Rmd"
-  - "content/02-Summary-Statistics/02-01-Frequency.Rmd"
+  - "content/02-Summary-Statistics/02-01-Measurement-Limits.Rmd"
+  - "content/02-Summary-Statistics/02-02-Frequency.Rmd"
+  - "content/03-Distributions/03-00-Distributions.Rmd"
+  - "content/03-Distributions/03-01-Total-Score-Difficulty.Rmd"

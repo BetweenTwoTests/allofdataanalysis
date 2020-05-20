@@ -1,12 +1,12 @@
 ## Frequency
 
 
-```{r 02-01-setup-cache, echo=FALSE, message=FALSE, cache=T}
+```{r 02-02-setup-cache, echo=FALSE, message=FALSE, cache=T}
 df_chips <- readRDS("data/chocochip_2019.rds")
 ```
 
 
-```{r 02-01-setup, echo=FALSE, message=FALSE}
+```{r 02-02-setup, echo=FALSE, message=FALSE}
 library(tidyverse)
 library(kableExtra)
 ```

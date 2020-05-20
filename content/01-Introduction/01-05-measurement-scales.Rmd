@@ -49,11 +49,19 @@ Sometimes called equi-interval scales to distinguish this level of measurement f
 
 This scale can be added, subtracted, multiplied, and divided *without affecting the relative distances among scores.*. The intervals between two scores can be determined by arithmetic manipulation of the scores.
 
-- Examples: Temperature scale like Celcius, Farenheit, Kelvin (?)
 
 An important characteristic of interval scales is that the zero point is arbitrary, which means that we cannot meaningfully interpret the size of particular score ratios. As a consequence of being measured on equi-units, it is possible for interval data to be normal under asymptotic assumptions. This is just a fancy way of saying that variables measured in interval scales have _*central tendency*_ that can be measured by mode, median, or mean. Standard deviations for these variables can also be calculated.
 
 > Some would argue that centeral tendency for nominal and ordinal data can be calculated via mode. For practical purposes, I think that is valid, but in purist sense, I don't think central tendency is defined for nominal and ordinal data.
+
+- Examples: Temperature scale like Celcius, Farenheit
+<br/>
+10 C^o^ vs 20 C^o^ and 20 C^o^ vs 30 C^o^: the degrees are 10 units apart, but just because $\frac{20}{10}=2$, it doesn't mean 20 C^o^ is $2\times$10 C^o^.
+<br/>
+Your local weather report might say today's weather (20 C^o^) is twice as hot as yesterday's weather (10 C^o^), but that would be wrong because Celcius scale has no concept of ratio! This has to be with the fact that there is no meaningful $0$ in Celcius. Celcius scale does have 0 to represent freezing point, but this is not a true 0 that represents absence of something, unlike Kelvin scale where 0 is complete absence of molecular motion. Therfore ...
+
+- Not an example: Kelvin
+<br/> Kelvin is not an interval scale. It is a _ratio scale_ because it has properties of interval scale with absolute zero. If two liquids have 10 Kelvin and 20 Kelvin respectively, that does indeed mean the latter is is twice as the former.
 
 <h3>Ratio scales</h3>
 
