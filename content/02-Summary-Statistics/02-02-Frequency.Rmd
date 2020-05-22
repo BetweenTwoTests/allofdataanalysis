@@ -12,16 +12,18 @@ library(kableExtra)
 ```
 
 
-Table \@ref(tab:chocochip-table) shows the number of chocolate chips in a Chips Ahoy cookie measured by 33 graduate students. Each person (`Id`) measured his/her own cookie twice (`Time_1` and `Time_2`). Prior to collecting this data, the students discussed what ~counts as~ is considered a single chocolate chip. This is actually more difficult than you think because chocolate chips in a cookie comes in different sizes and shapes (individual chip or meleted and merged together as giant glob).
+Table \@ref(tab:02-02-chocochip-table) shows the number of chocolate chips in a Chips Ahoy cookie measured by 33 graduate students. Each person (`Id`) measured his/her own cookie twice (`Time_1` and `Time_2`). Prior to collecting this data, the students discussed what ~counts as~ is considered a single chocolate chip. This is actually more difficult than you think because chocolate chips in a cookie comes in different sizes and shapes (individual chip or meleted and merged together as giant glob).
 
 
-```{r chocochip-table, echo=FALSE}
+```{r 02-02-chocochip-table, echo=FALSE}
 col_width <- "1.5 in"
-kable(
-  bind_rows(
+df_chips_prevew <- bind_rows(
     head(df_chips, n=3),
     tail(df_chips, n=3)
-  ),
+  )
+colnames(df_chips_prevew) <- c("Id", "Time~1~", "Time~2~")
+kable(
+  df_chips_prevew,
   booktabs = TRUE, caption = '<br/>
   Number of Chocolate Chips<br/>
   Measured by Fall 2019 Class'
@@ -37,22 +39,25 @@ Here are the steps to create a frequency table:
 
 <!-- Step 1 -->
 
-1. Find the highest value and the lowest value of our measured values.  
+1. Find the highest value and the lowest value of our measured values. We often refer measurement as a _*score*_ and use Greek letters to denote variable, like $x$, to represent these scores as a vector of value.
 <br/>
-In our chocolate chip example, the highest value is 32 and the lowest is 9 for measurements at time 1.
+<br/>
+In our chocolate chip example, the highest value is 32 and the lowest is 9 for measurements at time 1. We will only look at Time~1~ value for now
 
 ---
 
 <!-- Step 2, two column -->
 
-2. Count down from the highest value to the lowest value by __unit__ intervals. Put this sequence in column $x$ of our frequency table in decreasing order.  
+2. Count down from the highest value to the lowest value by [__measurement unit__][Limits & Rounding] intervals. Put this sequence in column $x$ of our frequency table in decreasing order.  
 <br/>
-__*unit*__: precision width of your measurement, in most cases $1$ since we measure counts by whole numbers. This may seem trivial because what else could it be other than $1$? Well, this is because we (humans) count numbers by whole numbers, and we are conditioned to think this way. In reality, we made a preliminary decision to what constitutes as 1 chocolate chip versus 2 chocolate chips. In this scenario, it is not possible to measure 1.5 chocolate chips. Note that we are not saying it is impossible to count 1.5 chips -- we would just have to define what this is. The 1-vs-2-chips concept is something that we invented for our __measurement__ of the construct of __chocolate chip__. We as a society "agreed" on a systematic procedural way to count chocolate chips.  
-<br/>If we had a machine that measured the magnitude of chocolate chip at $0.5$ intervals, then we would count down by $0.5$ instead. 
+__*measurement unit*__: precision width of your measurement, in most cases $1$ since we measure counts by whole numbers. This may seem trivial because what else could it be other than $1$? Well, this is because we (humans) count numbers by whole numbers, and we are conditioned to think this way. In reality, we made a preliminary decision to what constitutes as 1 chocolate chip versus 2 chocolate chips. In this scenario, it is not possible to measure 1.5 chocolate chips. Note that we are not saying it is impossible to count 1.5 chips -- we would just have to define what this is. The 1-vs-2-chips concept is something that we invented for our __measurement__ of the construct of __chocolate chip__. We as a society "agreed" on a systematic procedural way to count chocolate chips.  
+<br/>
+If we had a agreed on measuring the magnitude of chocolate chip at $0.5$ intervals, then we would count down by $0.5$ instead. 
 
-```{r chocochip-freq-table-step2-echo, eval=FALSE, echo=TRUE}
-# Step 2
-chocochip_unit <- 1
+
+```{r 02-02-chocochip-freq-table-step2-echo, eval=FALSE, echo=TRUE}
+# Step 2: Generate dataset over all measurement unit
+chocochip_unit <- 1 # measurement unit
 x <- sort(seq(min(df_chips$Time_1), max(df_chips$Time_1), by = chocochip_unit), decreasing = T)
 df_freq <- tibble(x = x)
 ```
@@ -64,14 +69,13 @@ df_freq <- tibble(x = x)
 
 3. For each row value of column $x$, count the number of times that value appeared in our measurement. Put this value in column $f$ (for frequency) in our table.
 
-```{r chocochip-freq-table, echo=FALSE}
+```{r 02-02-chocochip-freq-table, echo=FALSE}
 # Step 2
 chocochip_unit <- 1
 x <- sort(seq(min(df_chips$Time_1), max(df_chips$Time_1), by = chocochip_unit), decreasing = T)
 df_freq <- tibble(x = x)
 
 # Step 3
-# Count # of times each Time_1 value appeared in our x, and put the counts in column f
 df_freq <- as_tibble(
   as.data.frame.table(
     table(x = factor(df_chips$Time_1, levels = df_freq$x)), 
@@ -80,7 +84,7 @@ df_freq <- as_tibble(
 
 # Step 4
 df_freq <- df_freq %>% 
-  arrange(desc(x)) %>% # cumulative sum requires ordered x from smallest to highest
+  arrange(desc(x)) %>%
   mutate(cf = cumsum(f)) %>% 
   arrange(x)
 
@@ -99,8 +103,8 @@ Also note that saying "This cookie has 1 'chocolate chip'" is equivalent to sayi
 <br/>
 This "procedural way to count chocolate chip" is also called __*operationalization*__ of chocolate chip. To be more generic, "number of chocolate chip" is an example of a __*construct*__. Contruct is a broad concept or topic of study interest. Another examples of constructs in non cookie-factory context is "intelligence". Just like how "number of chocolate chip" can be a difficult thing to define and measure, "intelligence" is difficult to define and measure. Our measurement error comes from various sources, including how we define these constructs and how we operationalize them.
 
-```{r chocochip-freq-table-step3-echo, eval=FALSE, echo=TRUE}
-# Step 3
+```{r 02-02-chocochip-freq-table-step3-echo, eval=FALSE, echo=TRUE}
+# Step 3: Calculate frequency over min to max of x, for each measurement unit
 # Count # of times each Time_1 value appeared in our x, and put the counts in column f
 df_freq <- as_tibble(
   as.data.frame.table(
@@ -113,10 +117,10 @@ df_freq <- as_tibble(
 
 <!-- Step 4-->
 
-4. We now calculate the cumulative frequency and save to our table as $cf$. To do this, we sum up the frequency $f$ in the ascending ordered values of $x$ (lowest value to highest value). Note that in the R code using `library(dplyr)`, we are ordering x in __descending__ order due to the vocabulary of `tidyverse` context (In `tidyverse` table, we are ordering the table rows from top to bottom. Hence, having lowest value of $x$ as first row and highest value of $x$ on the last row is arranging table in descending order).
+4. Calculate the cumulative frequency and save to our table as $cf$. To do this, we sum up the frequency $f$ in the ascending ordered values of $x$ (lowest value to highest value). Note that in the R code using `library(dplyr)`, we are ordering x in __descending__ order due to the vocabulary of `tidyverse` context (In `tidyverse` table, we are ordering the table rows from top to bottom. Hence, having lowest value of $x$ as first row and highest value of $x$ on the last row is arranging table in descending order).
 
-```{r chocochip-freq-table-step4-echo, eval=FALSE, echo=TRUE}
-# Step 4
+```{r 02-02-chocochip-freq-table-step4-echo, eval=FALSE, echo=TRUE}
+# Step 4: Calculate cumulative frequency
 df_freq <- df_freq %>% 
   arrange(desc(x)) %>% # cumulative sum requires ordered x from smallest to highest
   mutate(cf = cumsum(f)) %>% 
@@ -124,6 +128,28 @@ df_freq <- df_freq %>%
 ```
 
 
+It looks like we are simply taking a running sum of frequency, but it is very important to understand the meaning of cumulative frequency, especially in terms of limits as per [Limits & Rounding]. 
+<br/>
+&nbsp;_Cumulative frequency_ by definition is the frequency of scores falling at or below the upper limit of a score. 
+<br/>
+You probably were exposed to cumulative frequency in terms simpler definition of "the frequency by which the observed values X are less than or equal to Xr." ([Wikipedia - Cumulative Frequency Analysis](https://en.wikipedia.org/wiki/Cumulative_frequency_analysis)) and/or similar concept from probability distribution as Cumulative Distribution Function (CDF). What you previously know about cumulative frequency is valid, but you should augment that prior knowledge with the concept of measurement and uncertainty. Remember, a score of $x_{i}$ doesn't actually mean "Observation $i$ scored exactly $x_{i}$." It is more appropriate to say "Observation $i$ scored somewhere between $(x_{i} - \frac{1}{2}$ of $x_{\bullet, \text{unit of measurement}})$ and $(x_{i} + \frac{1}{2}$ of $x_{\bullet, \text{unit of measurement}})$."
+
+
+---
+
+<!-- Step 5-->
+
+5. Calculate the proportion (relative frequency) of each $x$ by dividing frequency, $f$, by sum of all frequencies (or equivalently, the max of cumulative frequency). Similarly, calculate the cumulative proportion by dividing cumulative frequency, $cf$, by sum of all frequencies.
+
+
+```{r 02-02-chocochip-freq-table-step5-echo, eval=FALSE, echo=TRUE}
+# Step 5: Calculate relative
+df_freq <- 
+  df_freq %>% 
+  mutate(p = f / max(cf),
+         cp = cf / max(cf))
+
+```
 
 
 

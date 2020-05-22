@@ -65,10 +65,10 @@ This is what we most likely are talking about when we say an "experiment to test
     - **Independent Variable** (IV) - Variable that we can select and manipulate.
 <br/>IV must have at least two levels (categorical) or values (numerical) that IV can take. If IV has only one level or value, then that IV is not useful at all.
     - **Dependent Variable** (DV) - Variable that we measure and is interested in making inferences about. Sometimes callec _criterion variable_.
-    - **Extraneous Variable** (EV) - Variable other than IV that can influence the DV. If an EV effects the groups in an experiment (groups determined by the levels of IV, e.g. `treatment` IV with levels `control` and `drug`), then we do not know whether changes in DV are explained by IV or EV. Usually both IVs and EVs effect the variability in DV, and we call such Evs _confounding_ variable. Table \@ref(tab:ev-table) shows possible effects of EV on DV. Pay close attention to the effect on groups created by IV (e.g. `control` and `drug`). 
+    - **Extraneous Variable** (EV) - Variable other than IV that can influence the DV. If an EV effects the groups in an experiment (groups determined by the levels of IV, e.g. `treatment` IV with levels `control` and `drug`), then we do not know whether changes in DV are explained by IV or EV. Usually both IVs and EVs effect the variability in DV, and we call such Evs _confounding_ variable. Table \@ref(tab:01-03-ev-table) shows possible effects of EV on DV. Pay close attention to the effect on groups created by IV (e.g. `control` and `drug`). 
 <br/>
 
-```{r ev-table, echo=FALSE}
+```{r 01-03-ev-table, echo=FALSE}
 ev_table <- tribble(
     ~`Possible Effect on DV`, ~`Is it a problem?`, ~`Statistical term`,
     "EV has no effect on either groups", "Not a problem", "?",
@@ -77,8 +77,8 @@ ev_table <- tribble(
 )
 col_width <- c("4.5 in", "2 in", "2 in")
 kable(
-  ev_table,
-  booktabs = TRUE, caption = '<br/>EV & IV on DV',
+  ev_table, booktabs = T,
+  caption = '<br/>EV & IV on DV',
 ) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F) %>% 
   column_spec(seq_along(ev_table), width = col_width, width_min = col_width, width_max = col_width)

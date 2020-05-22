@@ -1,3 +1,52 @@
 ## Limits & Rounding
 
+```{r 01-01-setup, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(kableExtra)
+```
 
+<h3>Limits</h3>
+
+When we measure something with numbers, we are actually speaking in terms of limits based on our _unit of measurement_. \@ref(tab:01-01-number-limit) shows that when we measure something as $x_{i}$ (for person or observation index, $i$) equals to some value, then what this really means that "$x_{i}$ was measured via $x_{\bullet, \text{unit of measurement}}$, and the value of $x_{i}$ is within the range of $(x_{i,LL}, x_{i,UL})$". The unit of measurement ($x_{\bullet, \text{unit of measurement}}$) is constant for all observations because we assume that all observations were measured with the same level of precision. This is probably true in most cases.
+
+```{r 01-01-number-limit, echo=FALSE}
+kable(
+  tribble(
+    ~`$x_{i}$`, ~`$x_{\\bullet, \\text{unit of measurement}}$`, ~`$\\frac{1}{2}$ of $x_{\\bullet, \\text{unit of measurement}}$`, ~Lower, ~Upper,
+     3, 1, 0.5, 2.5, 3.5,
+     7, 1, 0.5, 6.5, 7.5,
+    10, 1, 0.5, 9.5, 10.5,
+  ), 
+  caption = 'Example of measurement at 1 unit of measurement',
+  booktabs = TRUE, align = "c") %>%
+  kable_styling(c("striped", "bordered"), full_width = F) %>%
+  add_header_above(c(" " = 1, " " = 1, " " = 1, "Exact Limits" = 2))
+```
+
+An example of this is measuring something by counting. You have 3 pencils, 7 apples, and 10 fingers. What you are really doing is saying "I have somewhere between 2.5 and 3.5 pencils, 6.5 and 7.5 apples, and 9.5 and 10.5 fingers". It seems silly to say you have somewhere between 6.5 and 7.5 apples, but what really is a whole apple? If I have one small apple and one big apple, then you would have said that you have 2 apples, but the sizes of apples are so different! It is just that we as society decided to systematically count objects as whole numbers and not always speak in ranges of possible values because of uncertainty.
+
+Some more examples with different number of units.
+
+```{r 01-01-number-limit-2, echo=FALSE}
+df_number_limit_2 <- tribble(
+  ~`$x_{i}$`, ~`$x_{\\bullet, \\text{unit of measurement}}$`, ~`$\\frac{1}{2}$ of $x_{\\bullet, \\text{unit of measurement}}$`, ~Lower, ~Upper,
+  " 3.0 ", 0.1, 0.05, 2.95, 3.05,
+  " 7.5 ", 0.1, 0.05, 6.95, 7.05,
+  "10   ", 0.1, 0.05, 9.95, 10.05,
+  
+  " 3.49",  0.01, 0.005, 3.485, 3.495,
+  " 7.5 ",  0.01, 0.005, 7.495, 7.505,
+  "10.61", 0.01, 0.005, 10.605, 10.615
+)
+df_number_limit_2[[1]] <- str_replace_all(df_number_limit_2[[1]], " ", "&nbsp;")
+kable(
+  df_number_limit_2,
+  caption = 'Example of measurement at 1 unit of measurement',
+  booktabs = TRUE, align = c("r","c","c","c","c"), escape=F,
+) %>%
+  kable_styling(c("striped", "bordered"), full_width = F) %>%
+  add_header_above(c(" " = 1, " " = 1, " " = 1, "Exact Limits" = 2)) %>% 
+  pack_rows(" ", start_row = 4, end_row = 6, label_row_css = "text-align: center;")
+```
+
+<h3>Rounding</h3>

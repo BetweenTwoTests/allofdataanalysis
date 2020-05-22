@@ -5,7 +5,7 @@ library(tidyverse)
 library(kableExtra)
 ```
 
-You often see terms like _between-subject and _within-subject_ What are they and how do they relate to experiment design?
+You often see terms like _between-subject_ and _within-subject_ What are they and how do they relate to experiment design?
 
 
 <h3>One IV vs DV</h3>
@@ -21,7 +21,7 @@ there are $\langle y_{1,2}, y_{2,2}, y_{3,2}, ..., y_{n_2, 2}\rangle$ measuremen
 
 When it is obvious that first subscript (subject index) and second subscript (group index) is obviously distinguishable, the commas between the indices are omitted. When we aggregate over the subjects (as we are doing with averages), we often put a dot $\bullet$ in place of the $i$ as a placeholder.
 
-```{r one-IV-two-levels-vs-DV, echo = FALSE}
+```{r 01-04-one-IV-two-levels-vs-DV, echo = FALSE}
 df_oneIV <- tribble(
   ~Control  , ~Experiment,
   "$\\overline{y}_{\\bullet 1}$",   "$\\overline{y}_{\\bullet 2}$"
@@ -42,7 +42,7 @@ You can also be more explicit and say $\overline{y}_{\bullet,Control}$, $\overli
 
 When we add another IV, we can apply the same logic as 1 IV case, except the rows in the table now represent IV levels. This is called _*factorial*_ design.
 
-```{r two-IVs-two-levels-vs-DV, echo = FALSE}
+```{r 01-04-two-IVs-two-levels-vs-DV, echo = FALSE}
 df_twoIV <- tribble(
   ~""            ,       ~"",               ~Control,            ~Experiment,
   "IV2 (Sex)" ,    "Male", "$\\overline{y}_{11}$", "$\\overline{y}_{12}$",
