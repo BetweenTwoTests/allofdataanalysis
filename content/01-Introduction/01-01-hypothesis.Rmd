@@ -62,7 +62,7 @@ Whether we choose $\neq$, $<$, or $>$ is related to the statistical technique we
 
 A cursory look would imply that $H_0$ is always "something equals nothing" and $H_a$ is "something equals not-nothing". But this isn't always true, as we see in the example. See [answer to "How to choose the null and alternative hypothesis?" in Cross Validated Forum for more](https://stats.stackexchange.com/a/123304/183622)
 
-The way that $H_0$ and $H_a$ are stated in textbooks suggest that you should form the null hypotheis comes first, then the alternative hypothesis. Although this can get you the right answer, the more suitable direction is $H_a \rightarrow  H_0$. The initial starting point of $H_a$ should be guided by your (scientific) Research Hypothesis. The $H_0$ is often the complement of $H_a$ or more often $H_0: something = 0$, but it doesn't have to be. The "null" in Null Hypothesis doesn't mean $= 0$. It means the $something$ you wanted is not present, which often is $= 0$ but not always.
+The way that $H_0$ and $H_a$ are stated in textbooks suggest that you should form the null hypotheis comes first, then the alternative hypothesis. Although this can get you the right answer, the more suitable direction is $H_a \rightarrow  H_0$. The initial starting point of $H_a$ should be guided by your (scientific) Research Hypothesis. The $H_0$ is often the complement of $H_a$ or more often $H_0: something = 0$, but it doesn't have to be. The "null" in Null Hypothesis doesn't mean $= 0$. It means the $something$ you wanted is _not present_, which often is $= 0$ but not always.
 
 We often want to see evidence against the null, and this aligns well with the fact that what we want to establish evidence for the Research Hypothesis / Alternative Hypothesis.  
 
