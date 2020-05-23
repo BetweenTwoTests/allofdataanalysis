@@ -19,7 +19,7 @@ kable(
   ), 
   caption = 'Example of measurement at 1 unit of measurement',
   booktabs = TRUE, align = "c") %>%
-  kable_styling(c("striped", "bordered"), full_width = F) %>%
+  kable_styling(c("striped", "condensed", "bordered"), full_width = F) %>%
   add_header_above(c(" " = 1, " " = 1, " " = 1, "Exact Limits" = 2))
 ```
 

@@ -56,7 +56,7 @@ An important characteristic of interval scales is that the zero point is arbitra
 
 - Examples: Temperature scale like Celcius, Farenheit
 <br/>
-10 C^o^ vs 20 C^o^ and 20 C^o^ vs 30 C^o^: the degrees are 10 units apart, but just because $\frac{20}{10}=2$, it doesn't mean 20 C^o^ is $2\times$10 C^o^.
+10 C^o^ vs 20 C^o^ and 20 C^o^ vs 30 C^o^: the degrees are 10 units apart, but just because $\frac{20}{10}=2$, it doesn't mean 20 C^o^ is $2 \times 10$ C^o^.
 <br/>
 Your local weather report might say today's weather (20 C^o^) is twice as hot as yesterday's weather (10 C^o^), but that would be wrong because Celcius scale has no concept of ratio! This has to be with the fact that there is no meaningful $0$ in Celcius. Celcius scale does have 0 to represent freezing point, but this is not a true 0 that represents absence of something, unlike Kelvin scale where 0 is complete absence of molecular motion. Therfore ...
 
