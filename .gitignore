@@ -4,4 +4,5 @@
 _bookdown_files
 .DS_Store
 *.rds
+!data/*.rds
 .Rapp.history

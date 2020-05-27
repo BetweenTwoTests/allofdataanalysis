@@ -1,8 +1,14 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 ## Frequency
 
-
 ```{r 02-02-setup-cache, echo=FALSE, message=FALSE, cache=T}
-df_chips <- readRDS("data/chocochip_2019.rds")
+# df_chips <- readr::read_csv("data/chocochip_2019.csv")
+# saveRDS(df_chips, "data/chocochips_2019.rds")
+df_chips <- readRDS("data/chocochips_2019.rds")
 ```
 
 
@@ -12,7 +18,7 @@ library(kableExtra)
 ```
 
 
-Table \@ref(tab:02-02-chocochip-table) shows the number of chocolate chips in a Chips Ahoy cookie measured by 33 graduate students. Each person (`Id`) measured his/her own cookie twice (`Time_1` and `Time_2`). Prior to collecting this data, the students discussed what ~counts as~ is considered a single chocolate chip. This is actually more difficult than you think because chocolate chips in a cookie comes in different sizes and shapes (individual chip or meleted and merged together as giant glob).
+Table \@ref(tab:02-02-chocochip-table) shows the number of chocolate chips in a Chips Ahoy cookie measured by 33 graduate students. Each person (`Id`) measured his/her own cookie twice (`Time_1` and `Time_2`). Prior to collecting this data, the students discussed what ~counts as~ is considered a single chocolate chip. This is actually more difficult than you think because chocolate chips in a cookie comes in different sizes and shapes (individual chip or melted and merged together as giant glob).
 
 
 ```{r 02-02-chocochip-table, echo=FALSE}
@@ -37,18 +43,18 @@ Let's create a frequency table for measurement at time 1 with this dataset.
 
 Here are the steps to create a frequency table:
 
-<!-- Step 1 -->
-
-1. Find the highest value and the lowest value of our measured values. We often refer measurement as a _*score*_ and use Greek letters to denote variable, like $x$, to represent these scores as a vector of value.
+*Step 1*
+<br/>
+Find the highest value and the lowest value of our measured values. We often refer measurement as a _*score*_ and use Greek letters to denote variable, like $x$, to represent these scores as a vector of value.
 <br/>
 <br/>
 In our chocolate chip example, the highest value is 32 and the lowest is 9 for measurements at time 1. We will only look at Time~1~ value for now
 
 ---
 
-<!-- Step 2, two column -->
-
-2. Count down from the highest value to the lowest value by [__measurement unit__][Limits & Rounding] intervals. Put this sequence in column $x$ of our frequency table in decreasing order.  
+*Step 2*
+<br/>
+Count down from the highest value to the lowest value by [__measurement unit__][Limits & Rounding] intervals. Put this sequence in column $x$ of our frequency table in decreasing order.  
 <br/>
 __*measurement unit*__: precision width of your measurement, in most cases $1$ since we measure counts by whole numbers. This may seem trivial because what else could it be other than $1$? Well, this is because we (humans) count numbers by whole numbers, and we are conditioned to think this way. In reality, we made a preliminary decision to what constitutes as 1 chocolate chip versus 2 chocolate chips. In this scenario, it is not possible to measure 1.5 chocolate chips. Note that we are not saying it is impossible to count 1.5 chips -- we would just have to define what this is. The 1-vs-2-chips concept is something that we invented for our __measurement__ of the construct of __chocolate chip__. We as a society "agreed" on a systematic procedural way to count chocolate chips.  
 <br/>
@@ -62,12 +68,11 @@ x <- sort(seq(min(df_chips$Time_1), max(df_chips$Time_1), by = chocochip_unit), 
 df_freq <- tibble(x = x)
 ```
 
-
 ---
 
-<!-- Step 3, two column -->
-
-3. For each row value of column $x$, count the number of times that value appeared in our measurement. Put this value in column $f$ (for frequency) in our table.
+*Step 3*
+<br/>
+For each row value of column $x$, count the number of times that value appeared in our measurement. Put this value in column $f$ (for frequency) in our table.
 
 ```{r 02-02-chocochip-freq-table, echo=FALSE}
 # Step 2
@@ -78,15 +83,14 @@ df_freq <- tibble(x = x)
 # Step 3
 df_freq <- as_tibble(
   as.data.frame.table(
-    table(x = factor(df_chips$Time_1, levels = df_freq$x)), 
+    table(x = factor(df_chips$Time_1, levels = rev(df_freq$x))), # factor levels in increasing order 
     responseName='f')
 )
 
 # Step 4
 df_freq <- df_freq %>% 
-  arrange(desc(x)) %>%
   mutate(cf = cumsum(f)) %>% 
-  arrange(x)
+  arrange(desc(x)) # display the table ordered, increasing from bottom to up
 
 col_width <- "1 in"
 kable(df_freq,
@@ -108,31 +112,35 @@ This "procedural way to count chocolate chip" is also called __*operationalizati
 # Count # of times each Time_1 value appeared in our x, and put the counts in column f
 df_freq <- as_tibble(
   as.data.frame.table(
-    table(x = factor(df_chips$Time_1, levels = df_freq$x)), 
+    table(x = factor(df_chips$Time_1, levels = rev(df_freq$x))), # factor levels in increasing order 
     responseName='f')
 )
 ```
 
 ---
 
-<!-- Step 4-->
-
-4. Calculate the cumulative frequency and save to our table as $cf$. To do this, we sum up the frequency $f$ in the ascending ordered values of $x$ (lowest value to highest value). Note that in the R code using `library(dplyr)`, we are ordering x in __descending__ order due to the vocabulary of `tidyverse` context (In `tidyverse` table, `tibble`, we are ordering the table rows from top to bottom. Hence, having lowest value of $x$ as first row and highest value of $x$ on the last row is arranging table in descending order).
+*Step 4*
+<br/>
+Calculate the cumulative frequency and save to our table as $cf$. To do this, we sum up the frequency $f$ in the ascending ordered values of $x$ (lowest value to highest value). Note that in the R code using `library(dplyr)`, we are ordering x in __descending__ order due to the vocabulary of `tidyverse` context (In `tidyverse` table, `tibble`, we are ordering the table rows from top to bottom. Hence, having lowest value of $x$ as first row and highest value of $x$ on the last row is arranging table in descending order).
 
 ```{r 02-02-chocochip-freq-table-step4-echo, eval=FALSE, echo=TRUE}
 # Step 4: Calculate cumulative frequency
 df_freq <- df_freq %>% 
-  arrange(desc(x)) %>% # cumulative sum requires ordered x from smallest to highest
   mutate(cf = cumsum(f)) %>% 
-  arrange(x)
+  arrange(desc(x)) # display the table ordered, increasing from bottom to up
 ```
-
 
 It looks like we are simply taking a running sum of frequency, but it is very important to understand the meaning of cumulative frequency, especially in terms of limits as per [Limits & Rounding]. 
 <br/>
 &nbsp;_Cumulative frequency_ by definition is the frequency of scores falling at or below the upper limit of a score. 
 <br/>
 You probably were exposed to cumulative frequency in terms simpler definition of "the frequency by which the observed values X are less than or equal to Xr." ([Wikipedia - Cumulative Frequency Analysis](https://en.wikipedia.org/wiki/Cumulative_frequency_analysis)) ~~and/or somehow equated it as discrete version of similar concept from probability distribution as Cumulative Distribution Function (CDF)~~. What you previously know about cumulative frequency is valid, but you should augment that prior knowledge with the concept of measurement and uncertainty. Remember, a score of $x_{i}$ doesn't actually mean "Observation $i$ scored exactly $x_{i}$." It is more appropriate to say "Observation $i$ scored somewhere between $(x_{i} - \frac{1}{2}$ of $x_{\bullet, \text{unit of measurement}})$ and $(x_{i} + \frac{1}{2}$ of $x_{\bullet, \text{unit of measurement}})$."
+<br/>
+Hence, computing cumulative frequency algorithm is as follow:
+
+1. For $min(x)$, $cf = f$
+2. For all $i$ where $x_{i} > min(x)$, $cf =$ number of observations with score $< x_{i, LL}$
+3. For $max(x)$, $cf = N$, where $N = \sum{f}$, aka total count of all frequencies
 
 ```{r 02-02-chocohip-freq-table-step5, echo=FALSE}
 df_freq_with_limit <- df_freq %>% 
@@ -147,29 +155,142 @@ kable(df_freq_with_limit) %>%
 By adding the concept of limits, we can further elaborate on concepts like _range_ that goes beyond what you have probably have learned as "maximum value - minimum value + 1". What range really is:
 
 \begin{align*} 
-range(X) &= max(x_{UL}) - min(x_{LL}) + class\ width \\
-class\ width &= x_{UL} - x_{LL}
+range(X) & = x_{max} - x_{min} + 1 \\
+& = x_{max} - x_{min} + 0.5 + 0.5 \\
+& = x_{max} - x_{min} + \frac{1}{2} x_{\bullet, \text{unit of measurement}} +  \frac{1}{2} x_{\bullet, \text{unit of measurement}} \\
+& = x_{max} + \frac{1}{2} x_{\bullet, \text{unit of measurement}} - x_{min} + \frac{1}{2} x_{\bullet, \text{unit of measurement}}\\
+& = (x_{max} + \frac{1}{2} x_{\bullet, \text{unit of measurement}}) - (x_{min} - \frac{1}{2} x_{\bullet, \text{unit of measurement}}) \\
+& = max(x_{UL}) - min(x_{LL})
 \end{align*} 
 
+Hence, _*range*_ is actually defined by lower limit of the $min(x)$ and upper limit of $max(x)$.
 
-In the most cases where we compute frequency by whole number counts, class width is just equal to the measurement unit which is just 1. That is why the simple rule that you have learned as "max - min + 1" works. It actually is a simplification of this concept. The reason why we use class width instead of simply using "1" will make sense when we create _grouped frequency_. In short, the range definition with _class width_ is a generalization of "max - min + 1" that works for cases when our unit of measurement is not 1.
+In the most cases where we compute frequency by whole number counts, class width is just equal to the measurement unit which is just 1. That is why the simple rule that you have learned as "max - min + 1" works. It actually is a simplification of this concept, since we always count in whole number units.
 <br/>
-So
+
 ---
 
-<!-- Step 5-->
-
-5. Calculate the proportion (relative frequency) of each $x$ by dividing frequency, $f$, by sum of all frequencies (or equivalently, the max of cumulative frequency). Similarly, calculate the cumulative proportion by dividing cumulative frequency, $cf$, by sum of all frequencies.
-
+*Step 5*
+<br/>
+Calculate the proportion (relative frequency) of each $x$ by dividing frequency, $f$, by sum of all frequencies (or equivalently, the max of cumulative frequency). Similarly, calculate the cumulative proportion by dividing cumulative frequency, $cf$, by sum of all frequencies.
+<br/>
+Note that cumulative proportion, $cp$, is not `cumsum(p)` but rather defined by cumulative frequency.
 
 ```{r 02-02-chocochip-freq-table-step5-echo, eval=FALSE, echo=TRUE}
-# Step 5: Calculate relative
+# Step 5: Calculate relative frequency (proportion)
 df_freq <- 
   df_freq %>% 
   mutate(p = f / max(cf),
          cp = cf / max(cf))
+```
 
+<br/>
+<br/>
+<br/>
+
+
+```{r 02-02-chocochip-freq-table-step5, echo=FALSE}
+# Step 5: Calculate relative frequency
+df_freq <- 
+  df_freq %>% 
+  mutate(p = f / max(cf),
+         cp = cf / max(cf))
+df_freq %>% 
+  mutate(p = format(round(p, 4), 4),
+         cp = format(round(cp, 4), 4)
+  ) %>% 
+  kable(booktabs = TRUE, align = "c") %>% 
+  kable_styling(bootstrap_options = c("striped", "bordered"), full_width = F)
 ```
 
 
+## Grouped Frequency
+
+When counting by every unit of measure is too granular, we can create grouped frequency distribution. To do this, we need to decide on how many groups ($n_{classes}$) and the width of the group (_class width_ or _interval_, $i$) that we will combine the original scores to. 
+
+\begin{equation*}
+n_{class} = \frac{range(X)}{i}
+\end{equation*}
+
+Some rules/guideline
+
+1. if $\frac{range(X)}{i}$ is a decimal, round up and use that rounded up number as $n_{class}$
+2. $i$ should be odd
+3. The lowest limit of new class (aka _interval_, _stated or apparent limit_) should be divisible by $i$
+
+_(TODO: reasoning for #2, #3)_
+
+If you are starting from number of classes, same formula applies
+
+\begin{equation}
+i = \frac{range(X)}{n_{class}}
+\end{equation} (\#eq:02-02-iWidth-formula)
+
+To compute grouped frequency:
+
+1. Start with range of limits for smallest class $(class_{\ i,\ LL}, class_{\ i,\ UL}) = (min(x_{LL}),\ min(x_{LL}) + i)$
+2. Increment $i$ until $max(x_{UL})$: $(class_{i,\ LL}, class_{i,\ UL}) = (class_{\ i-1,\ UL},\ class_{\ i-1,\ UL} + i)$
+3. Stop at $(class_{i,\ LL}, class_{i,\ UL}) = (class_{\ i-1,\ UL},\ max(x_{UL})$
+<h3>Example with 4 classes</h3>
+
+Using `nClasses` as starting point using \@ref(eq:02-02-iWidth-formula):
+
+```{r 02-03-grouped-frequency, warning=FALSE}
+# number of classes
+nClasses <- 5
+
+# interval width, i
+iWidth <- ceiling((max(x) - min(x) + 1) / nClasses)
+class_LL <- seq(from = min(x) - chocochip_unit/2, to = max(x) - chocochip_unit/2, by = iWidth)
+class_UL <- class_LL + iWidth
+class_name = paste0(class_LL, " - ", class_UL) 
+#  "8.5 - 13.5", # (min lower limit of x, .... )
+# "13.5 - 18.5", 
+# "18.5 - 23.5", 
+# "23.5 - 28.5",
+# "28.5 - 33.5"  # (..., max upper limit of x)
+
+# Pretty name of class name (without bounds)
+# also in factor data type for plotting and grouping in R
+chips_group = paste0(ceiling(class_LL), " - ", floor(class_UL))
+
+df_freq_grouped <- tibble(x) %>% 
+  rowwise() %>% 
+  mutate(
+    # assumes correct (class_LL, class_UL)
+    which_group_index = which((x > class_LL & x < class_UL)), 
+    `$(class_{LL} - class_{UL})$` = class_name[which_group_index],
+    `Chip Group (class)` = factor(chips_group[which_group_index], levels = chips_group) 
+  ) %>%
+  group_by(`$(class_{LL} - class_{UL})$`, `Chip Group (class)`) %>%
+  tally(name = "f") %>% 
+  mutate(
+    cf = cumsum(f),
+    p = f / max(cf),
+    cp = cf / max(cf)
+  ) %>% 
+  arrange(desc(`Chip Group (class)`)) # display the table ordered, increasing from bottom to up
+```
+
+```{r, 02-03-grouped-frequency-table, echo=FALSE}
+kable(df_freq_grouped, booktabs = TRUE, align = "c") %>% 
+  kable_styling(bootstrap_options = c("striped", "bordered"), full_width = F)
+```
+
+```{r 02-03-grouped-frequency-plot, out.width="680px", out.height="450px", fig.align="center", optipng = '-o7', cache=T}
+library(ggplot2)
+ungrouped_freq_plot <- ggplot(df_freq) + 
+  geom_bar(aes(x, f), stat = "identity") +
+  ylim(0, 5) +
+  xlab("# of Chocolate Chips per Cookie") +
+  ylab("Frequency")
+
+grouped_freq_plot <- ggplot(df_freq_grouped) +
+  geom_bar(aes(`Chip Group (class)`, f), stat = "identity") +
+  ylim(0, 5) +
+  xlab("# of Chocolate Chips per Cookie") +
+  ylab("Frequency")
+
+gridExtra::grid.arrange(ungrouped_freq_plot, grouped_freq_plot, widths=c(0.55, 0.45), ncol=2)
+```
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.1 Hypothesis | All of Data Analysis</title>
   <meta name="description" content="1.1 Hypothesis | All of Data Analysis" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.1 Hypothesis | All of Data Analysis" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Leon Kim" />
 
 
-<meta name="date" content="2020-05-22" />
+<meta name="date" content="2020-05-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,9 +54,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -65,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -143,6 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="2-summary-statistics.html"><a href="2-summary-statistics.html"><i class="fa fa-check"></i><b>2</b> Summary Statistics</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-limits-rounding.html"><a href="2-1-limits-rounding.html"><i class="fa fa-check"></i><b>2.1</b> Limits &amp; Rounding</a></li>
 <li class="chapter" data-level="2.2" data-path="2-2-frequency.html"><a href="2-2-frequency.html"><i class="fa fa-check"></i><b>2.2</b> Frequency</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-grouped-frequency.html"><a href="2-3-grouped-frequency.html"><i class="fa fa-check"></i><b>2.3</b> Grouped Frequency</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-distributions.html"><a href="3-distributions.html"><i class="fa fa-check"></i><b>3</b> Distributions</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-1-total-score-difficulty.html"><a href="3-1-total-score-difficulty.html"><i class="fa fa-check"></i><b>3.1</b> Total Score &amp; Difficulty</a></li>
@@ -214,7 +217,7 @@ Since science proves in negative direction, this is the <em>“case B”</em> sc
 Formulating the hypothesis
 </h4>
 <p>A cursory look would imply that <span class="math inline">\(H_0\)</span> is always “something equals nothing” and <span class="math inline">\(H_a\)</span> is “something equals not-nothing”. But this isn’t always true, as we see in the example. See <a href="https://stats.stackexchange.com/a/123304/183622">answer to “How to choose the null and alternative hypothesis?” in Cross Validated Forum for more</a></p>
-<p>The way that <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span> are stated in textbooks suggest that you should form the null hypotheis comes first, then the alternative hypothesis. Although this can get you the right answer, the more suitable direction is <span class="math inline">\(H_a \rightarrow H_0\)</span>. The initial starting point of <span class="math inline">\(H_a\)</span> should be guided by your (scientific) Research Hypothesis. The <span class="math inline">\(H_0\)</span> is often the complement of <span class="math inline">\(H_a\)</span> or more often <span class="math inline">\(H_0: something = 0\)</span>, but it doesn’t have to be. The “null” in Null Hypothesis doesn’t mean <span class="math inline">\(= 0\)</span>. It means the <span class="math inline">\(something\)</span> you wanted is not present, which often is <span class="math inline">\(= 0\)</span> but not always.</p>
+<p>The way that <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span> are stated in textbooks suggest that you should form the null hypotheis comes first, then the alternative hypothesis. Although this can get you the right answer, the more suitable direction is <span class="math inline">\(H_a \rightarrow H_0\)</span>. The initial starting point of <span class="math inline">\(H_a\)</span> should be guided by your (scientific) Research Hypothesis. The <span class="math inline">\(H_0\)</span> is often the complement of <span class="math inline">\(H_a\)</span> or more often <span class="math inline">\(H_0: something = 0\)</span>, but it doesn’t have to be. The “null” in Null Hypothesis doesn’t mean <span class="math inline">\(= 0\)</span>. It means the <span class="math inline">\(something\)</span> you wanted is <em>not present</em>, which often is <span class="math inline">\(= 0\)</span> but not always.</p>
 <p>We often want to see evidence against the null, and this aligns well with the fact that what we want to establish evidence for the Research Hypothesis / Alternative Hypothesis.</p>
 <p>There are cases where we <strong>do not want to</strong> reject the null. These scenarios are when we finding modeling something. We will see example of this later on as well.</p>
 

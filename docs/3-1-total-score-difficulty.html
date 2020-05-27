@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.1 Total Score &amp; Difficulty | All of Data Analysis</title>
   <meta name="description" content="3.1 Total Score &amp; Difficulty | All of Data Analysis" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.1 Total Score &amp; Difficulty | All of Data Analysis" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Leon Kim" />
 
 
-<meta name="date" content="2020-05-22" />
+<meta name="date" content="2020-05-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,9 +54,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -65,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -143,6 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="2-summary-statistics.html"><a href="2-summary-statistics.html"><i class="fa fa-check"></i><b>2</b> Summary Statistics</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-limits-rounding.html"><a href="2-1-limits-rounding.html"><i class="fa fa-check"></i><b>2.1</b> Limits &amp; Rounding</a></li>
 <li class="chapter" data-level="2.2" data-path="2-2-frequency.html"><a href="2-2-frequency.html"><i class="fa fa-check"></i><b>2.2</b> Frequency</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-grouped-frequency.html"><a href="2-3-grouped-frequency.html"><i class="fa fa-check"></i><b>2.3</b> Grouped Frequency</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-distributions.html"><a href="3-distributions.html"><i class="fa fa-check"></i><b>3</b> Distributions</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-1-total-score-difficulty.html"><a href="3-1-total-score-difficulty.html"><i class="fa fa-check"></i><b>3.1</b> Total Score &amp; Difficulty</a></li>
@@ -169,101 +172,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Item difficulty <span class="math inline">\(p_i\)</span> is defined as probability of test takers answering the item <span class="math inline">\(i\)</span> correct. This is estimated by <span class="math inline">\(p_i = \frac{\text{# of test takers who answered correctly}}{\text{total # of test takers}}\)</span>. Let’s take a look at the relationship between <span class="math inline">\(p_i\)</span> and total score (sum of number of items correct, equally-weighted). In the following simulation, 15-item tests are administered to 1000 people. Different tests have different levels of difficulties for the underlying items.</p>
 <details>
 <p><summary>Code to simulate tests taken</summary></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># For a test with &quot;item_n&quot; number of items, </span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="co">#   generate a dataset where &quot;person_n&quot; number of people answered the 15 items.</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co"># For all people, each item has &quot;prob&quot; probability of answering correctly.</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="co">#   The vector of &quot;prob&quot; recycles to all the items.</span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co">#   For example, </span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co">#    &quot;prob = 0.5&quot; means all items have 50% chance of correct</span></a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="co">#    &quot;prob = c(0.25, 0.75)&quot; means item 1 has 25% chance, item 2 has 75% chance, </span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co">#                                 item 3 has 25% chance, item 4 has 75% chance, </span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="co">#                                 ... until you run out of item</span></a>
-<a class="sourceLine" id="cb5-10" title="10">make_test_score_df &lt;-<span class="st"> </span><span class="cf">function</span>(item_n, person_n, <span class="dt">prob =</span> <span class="fl">0.5</span>) {</a>
-<a class="sourceLine" id="cb5-11" title="11">  <span class="cf">if</span> (<span class="kw">length</span>(prob) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) {</a>
-<a class="sourceLine" id="cb5-12" title="12">    df &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">seq_len</span>(item_n), <span class="cf">function</span>(i) { <span class="kw">rbinom</span>(person_n, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> prob) })</a>
-<a class="sourceLine" id="cb5-13" title="13">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb5-14" title="14">    <span class="co"># if prob for all items not specified, recycle to the length of item_n</span></a>
-<a class="sourceLine" id="cb5-15" title="15">    prob &lt;-<span class="st"> </span><span class="kw">rep_len</span>(prob, item_n)</a>
-<a class="sourceLine" id="cb5-16" title="16">    res &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="kw">seq_along</span>(prob), <span class="cf">function</span>(i) {</a>
-<a class="sourceLine" id="cb5-17" title="17">      <span class="kw">rbinom</span>(person_n, <span class="dt">size =</span> <span class="dv">1</span>, prob[i])</a>
-<a class="sourceLine" id="cb5-18" title="18">    })</a>
-<a class="sourceLine" id="cb5-19" title="19">    df &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">unlist</span>(res), <span class="dt">ncol =</span> item_n, <span class="dt">nrow =</span> person_n, <span class="dt">byrow =</span> F)</a>
-<a class="sourceLine" id="cb5-20" title="20">  }</a>
-<a class="sourceLine" id="cb5-21" title="21">  </a>
-<a class="sourceLine" id="cb5-22" title="22">  <span class="kw">colnames</span>(df) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">rep</span>(<span class="st">&quot;Item &quot;</span>, item_n), <span class="kw">seq_len</span>(item_n))</a>
-<a class="sourceLine" id="cb5-23" title="23">  </a>
-<a class="sourceLine" id="cb5-24" title="24">  df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-25" title="25"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Person =</span>  <span class="kw">paste0</span>(<span class="kw">rep</span>(<span class="st">&quot;Person &quot;</span>, person_n), <span class="kw">seq_len</span>(person_n))) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-26" title="26"><span class="st">    </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="dt">names_to =</span> <span class="st">&quot;Item&quot;</span>) </a>
-<a class="sourceLine" id="cb5-27" title="27">  </a>
-<a class="sourceLine" id="cb5-28" title="28">  df</a>
-<a class="sourceLine" id="cb5-29" title="29">}</a>
-<a class="sourceLine" id="cb5-30" title="30"></a>
-<a class="sourceLine" id="cb5-31" title="31"><span class="co"># Create Density Plot for simulated dataset</span></a>
-<a class="sourceLine" id="cb5-32" title="32">make_test_score_plot &lt;-<span class="st"> </span><span class="cf">function</span>(df, item_n, person_n, <span class="dt">subtitle =</span> <span class="st">&quot;&quot;</span>) {</a>
-<a class="sourceLine" id="cb5-33" title="33">  df_Score_by_Person &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-34" title="34"><span class="st">    </span><span class="kw">group_by</span>(Person) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-35" title="35"><span class="st">    </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb5-36" title="36">      <span class="dt">Score =</span> <span class="kw">sum</span>(value)</a>
-<a class="sourceLine" id="cb5-37" title="37">    )</a>
-<a class="sourceLine" id="cb5-38" title="38">  <span class="kw">as_tibble</span>(</a>
-<a class="sourceLine" id="cb5-39" title="39">    df_freq &lt;-<span class="st"> </span><span class="kw">as.data.frame.table</span>(</a>
-<a class="sourceLine" id="cb5-40" title="40">      <span class="kw">table</span>(<span class="dt">Score =</span> <span class="kw">factor</span>(df_Score_by_Person<span class="op">$</span>Score, <span class="dt">levels =</span> <span class="kw">seq</span>(<span class="dv">0</span>, item_n, <span class="dt">by =</span> <span class="dv">1</span>))), </a>
-<a class="sourceLine" id="cb5-41" title="41">      <span class="dt">responseName=</span><span class="st">&#39;Frequency&#39;</span>))</a>
-<a class="sourceLine" id="cb5-42" title="42">  df_freq <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-43" title="43"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">RelativeFrequency =</span> Frequency<span class="op">/</span>person_n,</a>
-<a class="sourceLine" id="cb5-44" title="44">           <span class="dt">Score =</span> <span class="kw">as.numeric</span>(<span class="kw">as.character</span>(Score))) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-45" title="45"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Score, <span class="dt">y =</span> RelativeFrequency)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-46" title="46"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-47" title="47"><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Score&quot;</span>, </a>
-<a class="sourceLine" id="cb5-48" title="48">                       <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, item_n, <span class="dt">by =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb5-49" title="49">                       <span class="dt">minor_breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, item_n, <span class="dt">by =</span> <span class="dv">1</span>), </a>
-<a class="sourceLine" id="cb5-50" title="50">                       <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, item_n)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-51" title="51"><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, </a>
-<a class="sourceLine" id="cb5-52" title="52">                  <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> item_n <span class="op">*</span><span class="st"> </span><span class="fl">0.5</span>, <span class="dt">sd =</span> item_n <span class="op">*</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="fl">-0.5</span>)), <span class="co"># expected normal distribution at p = 0.5</span></a>
-<a class="sourceLine" id="cb5-53" title="53">                  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-54" title="54"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="kw">paste0</span>(<span class="st">&quot;Distribution of Test Scores for &quot;</span>, person_n, <span class="st">&quot; test takers.&quot;</span>),</a>
-<a class="sourceLine" id="cb5-55" title="55">            <span class="dt">subtitle =</span> subtitle) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-56" title="56"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Relative Frequency&quot;</span>)</a>
-<a class="sourceLine" id="cb5-57" title="57">}</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="3-1-total-score-difficulty.html#cb7-1"></a><span class="co"># For a test with &quot;item_n&quot; number of items, </span></span>
+<span id="cb7-2"><a href="3-1-total-score-difficulty.html#cb7-2"></a><span class="co">#   generate a dataset where &quot;person_n&quot; number of people answered the 15 items.</span></span>
+<span id="cb7-3"><a href="3-1-total-score-difficulty.html#cb7-3"></a><span class="co"># For all people, each item has &quot;prob&quot; probability of answering correctly.</span></span>
+<span id="cb7-4"><a href="3-1-total-score-difficulty.html#cb7-4"></a><span class="co">#   The vector of &quot;prob&quot; recycles to all the items.</span></span>
+<span id="cb7-5"><a href="3-1-total-score-difficulty.html#cb7-5"></a><span class="co">#   For example, </span></span>
+<span id="cb7-6"><a href="3-1-total-score-difficulty.html#cb7-6"></a><span class="co">#    &quot;prob = 0.5&quot; means all items have 50% chance of correct</span></span>
+<span id="cb7-7"><a href="3-1-total-score-difficulty.html#cb7-7"></a><span class="co">#    &quot;prob = c(0.25, 0.75)&quot; means item 1 has 25% chance, item 2 has 75% chance, </span></span>
+<span id="cb7-8"><a href="3-1-total-score-difficulty.html#cb7-8"></a><span class="co">#                                 item 3 has 25% chance, item 4 has 75% chance, </span></span>
+<span id="cb7-9"><a href="3-1-total-score-difficulty.html#cb7-9"></a><span class="co">#                                 ... until you run out of item</span></span>
+<span id="cb7-10"><a href="3-1-total-score-difficulty.html#cb7-10"></a>make_test_score_df &lt;-<span class="st"> </span><span class="cf">function</span>(item_n, person_n, <span class="dt">prob =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb7-11"><a href="3-1-total-score-difficulty.html#cb7-11"></a>  <span class="cf">if</span> (<span class="kw">length</span>(prob) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) {</span>
+<span id="cb7-12"><a href="3-1-total-score-difficulty.html#cb7-12"></a>    df &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">seq_len</span>(item_n), <span class="cf">function</span>(i) { <span class="kw">rbinom</span>(person_n, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> prob) })</span>
+<span id="cb7-13"><a href="3-1-total-score-difficulty.html#cb7-13"></a>  } <span class="cf">else</span> {</span>
+<span id="cb7-14"><a href="3-1-total-score-difficulty.html#cb7-14"></a>    <span class="co"># if prob for all items not specified, recycle to the length of item_n</span></span>
+<span id="cb7-15"><a href="3-1-total-score-difficulty.html#cb7-15"></a>    prob &lt;-<span class="st"> </span><span class="kw">rep_len</span>(prob, item_n)</span>
+<span id="cb7-16"><a href="3-1-total-score-difficulty.html#cb7-16"></a>    res &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="kw">seq_along</span>(prob), <span class="cf">function</span>(i) {</span>
+<span id="cb7-17"><a href="3-1-total-score-difficulty.html#cb7-17"></a>      <span class="kw">rbinom</span>(person_n, <span class="dt">size =</span> <span class="dv">1</span>, prob[i])</span>
+<span id="cb7-18"><a href="3-1-total-score-difficulty.html#cb7-18"></a>    })</span>
+<span id="cb7-19"><a href="3-1-total-score-difficulty.html#cb7-19"></a>    df &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">unlist</span>(res), <span class="dt">ncol =</span> item_n, <span class="dt">nrow =</span> person_n, <span class="dt">byrow =</span> F)</span>
+<span id="cb7-20"><a href="3-1-total-score-difficulty.html#cb7-20"></a>  }</span>
+<span id="cb7-21"><a href="3-1-total-score-difficulty.html#cb7-21"></a>  </span>
+<span id="cb7-22"><a href="3-1-total-score-difficulty.html#cb7-22"></a>  <span class="kw">colnames</span>(df) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">rep</span>(<span class="st">&quot;Item &quot;</span>, item_n), <span class="kw">seq_len</span>(item_n))</span>
+<span id="cb7-23"><a href="3-1-total-score-difficulty.html#cb7-23"></a>  </span>
+<span id="cb7-24"><a href="3-1-total-score-difficulty.html#cb7-24"></a>  df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-25"><a href="3-1-total-score-difficulty.html#cb7-25"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Person =</span>  <span class="kw">paste0</span>(<span class="kw">rep</span>(<span class="st">&quot;Person &quot;</span>, person_n), <span class="kw">seq_len</span>(person_n))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-26"><a href="3-1-total-score-difficulty.html#cb7-26"></a><span class="st">    </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="dt">names_to =</span> <span class="st">&quot;Item&quot;</span>) </span>
+<span id="cb7-27"><a href="3-1-total-score-difficulty.html#cb7-27"></a>  </span>
+<span id="cb7-28"><a href="3-1-total-score-difficulty.html#cb7-28"></a>  df</span>
+<span id="cb7-29"><a href="3-1-total-score-difficulty.html#cb7-29"></a>}</span>
+<span id="cb7-30"><a href="3-1-total-score-difficulty.html#cb7-30"></a></span>
+<span id="cb7-31"><a href="3-1-total-score-difficulty.html#cb7-31"></a><span class="co"># Create Density Plot for simulated dataset</span></span>
+<span id="cb7-32"><a href="3-1-total-score-difficulty.html#cb7-32"></a>make_test_score_plot &lt;-<span class="st"> </span><span class="cf">function</span>(df, item_n, person_n, <span class="dt">subtitle =</span> <span class="st">&quot;&quot;</span>) {</span>
+<span id="cb7-33"><a href="3-1-total-score-difficulty.html#cb7-33"></a>  df_Score_by_Person &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-34"><a href="3-1-total-score-difficulty.html#cb7-34"></a><span class="st">    </span><span class="kw">group_by</span>(Person) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-35"><a href="3-1-total-score-difficulty.html#cb7-35"></a><span class="st">    </span><span class="kw">summarise</span>(</span>
+<span id="cb7-36"><a href="3-1-total-score-difficulty.html#cb7-36"></a>      <span class="dt">Score =</span> <span class="kw">sum</span>(value)</span>
+<span id="cb7-37"><a href="3-1-total-score-difficulty.html#cb7-37"></a>    )</span>
+<span id="cb7-38"><a href="3-1-total-score-difficulty.html#cb7-38"></a>  <span class="kw">as_tibble</span>(</span>
+<span id="cb7-39"><a href="3-1-total-score-difficulty.html#cb7-39"></a>    df_freq &lt;-<span class="st"> </span><span class="kw">as.data.frame.table</span>(</span>
+<span id="cb7-40"><a href="3-1-total-score-difficulty.html#cb7-40"></a>      <span class="kw">table</span>(<span class="dt">Score =</span> <span class="kw">factor</span>(df_Score_by_Person<span class="op">$</span>Score, <span class="dt">levels =</span> <span class="kw">seq</span>(<span class="dv">0</span>, item_n, <span class="dt">by =</span> <span class="dv">1</span>))), </span>
+<span id="cb7-41"><a href="3-1-total-score-difficulty.html#cb7-41"></a>      <span class="dt">responseName=</span><span class="st">&#39;Frequency&#39;</span>))</span>
+<span id="cb7-42"><a href="3-1-total-score-difficulty.html#cb7-42"></a>  df_freq <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-43"><a href="3-1-total-score-difficulty.html#cb7-43"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">RelativeFrequency =</span> Frequency<span class="op">/</span>person_n,</span>
+<span id="cb7-44"><a href="3-1-total-score-difficulty.html#cb7-44"></a>           <span class="dt">Score =</span> <span class="kw">as.numeric</span>(<span class="kw">as.character</span>(Score))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-45"><a href="3-1-total-score-difficulty.html#cb7-45"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Score, <span class="dt">y =</span> RelativeFrequency)) <span class="op">+</span></span>
+<span id="cb7-46"><a href="3-1-total-score-difficulty.html#cb7-46"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb7-47"><a href="3-1-total-score-difficulty.html#cb7-47"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Score&quot;</span>, </span>
+<span id="cb7-48"><a href="3-1-total-score-difficulty.html#cb7-48"></a>                       <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, item_n, <span class="dt">by =</span> <span class="dv">1</span>),</span>
+<span id="cb7-49"><a href="3-1-total-score-difficulty.html#cb7-49"></a>                       <span class="dt">minor_breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, item_n, <span class="dt">by =</span> <span class="dv">1</span>), </span>
+<span id="cb7-50"><a href="3-1-total-score-difficulty.html#cb7-50"></a>                       <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, item_n)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-51"><a href="3-1-total-score-difficulty.html#cb7-51"></a><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, </span>
+<span id="cb7-52"><a href="3-1-total-score-difficulty.html#cb7-52"></a>                  <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> item_n <span class="op">*</span><span class="st"> </span><span class="fl">0.5</span>, <span class="dt">sd =</span> item_n <span class="op">*</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="fl">-0.5</span>)), <span class="co"># expected normal distribution at p = 0.5</span></span>
+<span id="cb7-53"><a href="3-1-total-score-difficulty.html#cb7-53"></a>                  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-54"><a href="3-1-total-score-difficulty.html#cb7-54"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="kw">paste0</span>(<span class="st">&quot;Distribution of Test Scores for &quot;</span>, person_n, <span class="st">&quot; test takers.&quot;</span>),</span>
+<span id="cb7-55"><a href="3-1-total-score-difficulty.html#cb7-55"></a>            <span class="dt">subtitle =</span> subtitle) <span class="op">+</span></span>
+<span id="cb7-56"><a href="3-1-total-score-difficulty.html#cb7-56"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Relative Frequency&quot;</span>)</span>
+<span id="cb7-57"><a href="3-1-total-score-difficulty.html#cb7-57"></a>}</span></code></pre></div>
 </details>
 <p>Now we generate 15-item test administered to 1000 people and plot the total score against theoretically normally distributed total score. Note the diffculty <span class="math inline">\(p_i\)</span> (<code>prob</code> in the R code)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">df_p25 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.25</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">make_test_score_plot</span>(df_p25, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.25</span>,<span class="st">&quot; (hard)&quot;</span>))))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="3-1-total-score-difficulty.html#cb8-1"></a>df_p25 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.25</span>)</span>
+<span id="cb8-2"><a href="3-1-total-score-difficulty.html#cb8-2"></a><span class="kw">make_test_score_plot</span>(df_p25, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.25</span>,<span class="st">&quot; (hard)&quot;</span>))))</span></code></pre></div>
 <p><img src="allofdataanalysis_files/figure-html/03-01-df-p25-1.png" width="672" /></p>
 <p>Items have hard difficulty (25% chance of correct), so the total score for test takers are right skewed.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">df_p50 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.50</span>)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">make_test_score_plot</span>(df_p50, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.50</span>,<span class="st">&quot; (medium)&quot;</span>))))</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="3-1-total-score-difficulty.html#cb9-1"></a>df_p50 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.50</span>)</span>
+<span id="cb9-2"><a href="3-1-total-score-difficulty.html#cb9-2"></a><span class="kw">make_test_score_plot</span>(df_p50, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.50</span>,<span class="st">&quot; (medium)&quot;</span>))))</span></code></pre></div>
 <p><img src="allofdataanalysis_files/figure-html/03-01-df-p50-1.png" width="672" /></p>
 <p>Items have medium difficulty (50% chance of correct), so the total score for test takers are normally distributed.</p>
 <blockquote>
 <p>TODO compare kurtosis?</p>
 </blockquote>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">df_p75 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.75</span>)</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">make_test_score_plot</span>(df_p75, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.75</span>,<span class="st">&quot; (easy)&quot;</span>))))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="3-1-total-score-difficulty.html#cb10-1"></a>df_p75 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.75</span>)</span>
+<span id="cb10-2"><a href="3-1-total-score-difficulty.html#cb10-2"></a><span class="kw">make_test_score_plot</span>(df_p75, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.75</span>,<span class="st">&quot; (easy)&quot;</span>))))</span></code></pre></div>
 <p><img src="allofdataanalysis_files/figure-html/03-01-df-p75-1.png" width="672" /></p>
 <p>Items have east difficulty (75% chance of correct), so the total score for test takers are left skewed.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">df_p02 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.02</span>)</a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="kw">make_test_score_plot</span>(df_p02, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.02</span>,<span class="st">&quot; (very hard)&quot;</span>))))</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="3-1-total-score-difficulty.html#cb11-1"></a>df_p02 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.02</span>)</span>
+<span id="cb11-2"><a href="3-1-total-score-difficulty.html#cb11-2"></a><span class="kw">make_test_score_plot</span>(df_p02, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.02</span>,<span class="st">&quot; (very hard)&quot;</span>))))</span></code></pre></div>
 <p><img src="allofdataanalysis_files/figure-html/03-01-df-p02-1.png" width="672" /></p>
 <p>Items have very hard difficulty (2% chance of correct), so the total score for test takers are highly right skewed. This test isn’t useful (Other than maybe identifying that one-in-a-million genius. Regardless, this test is not discriminatory).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">df_p98 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.98</span>)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">make_test_score_plot</span>(df_p98, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.98</span>,<span class="st">&quot; (very easy)&quot;</span>))))</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="3-1-total-score-difficulty.html#cb12-1"></a>df_p98 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.98</span>)</span>
+<span id="cb12-2"><a href="3-1-total-score-difficulty.html#cb12-2"></a><span class="kw">make_test_score_plot</span>(df_p98, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.98</span>,<span class="st">&quot; (very easy)&quot;</span>))))</span></code></pre></div>
 <p><img src="allofdataanalysis_files/figure-html/03-01-df-p98-1.png" width="672" /></p>
 <p>Items have very easy difficulty (98% chance of correct), so the total score for test takers are highly left skewed. This test isn’t useful because everyone will get perfect or near perfect scores.</p>
 <hr />
 <p>So what is an ideal test? A good mixture of items varying diffculty around 0.30 - 0.70 (for average of 0.5).</p>
 <p>But if we are targeting ~0.50 for all items taken together, why not alternate between very hard (<span class="math inline">\(p_i = 0.02\)</span>) and very easy (<span class="math inline">\(p_i = 0.98\)</span>) for the ~0.50? Wouldn’t that lead to the same thing?</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># Leptokurtic distribution of test scores bc items are too hard or too easy</span></a>
-<a class="sourceLine" id="cb11-2" title="2">df_p02_p98 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.02</span>, <span class="fl">0.98</span>))</a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="kw">make_test_score_plot</span>(df_p02_p98, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, </a>
-<a class="sourceLine" id="cb11-4" title="4">                     <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i],<span class="st">&quot; = 0.02 or &quot;</span>, p[i], <span class="st">&quot;, = 0.98 (very hard or very easy)&quot;</span>))))</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="3-1-total-score-difficulty.html#cb13-1"></a><span class="co"># Leptokurtic distribution of test scores bc items are too hard or too easy</span></span>
+<span id="cb13-2"><a href="3-1-total-score-difficulty.html#cb13-2"></a>df_p02_p98 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.02</span>, <span class="fl">0.98</span>))</span>
+<span id="cb13-3"><a href="3-1-total-score-difficulty.html#cb13-3"></a><span class="kw">make_test_score_plot</span>(df_p02_p98, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, </span>
+<span id="cb13-4"><a href="3-1-total-score-difficulty.html#cb13-4"></a>                     <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i],<span class="st">&quot; = 0.02 or &quot;</span>, p[i], <span class="st">&quot;, = 0.98 (very hard or very easy)&quot;</span>))))</span></code></pre></div>
 <p><img src="allofdataanalysis_files/figure-html/03-01-df-p02-p98-1.png" width="672" /></p>
 <p>The simulation shows that the total score distribution is piling up in the middle, creating highly leptokurtic distribution. To fix this, you have to add more <em>MEDIUM LEVEL</em> items to <u>distribute item’s contribution to the total score to both ends of the total score</u></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># To fix, add more moderate difficutly tests</span></a>
-<a class="sourceLine" id="cb12-2" title="2">df_p02_p50_p98 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.02</span> , <span class="fl">0.50</span>, <span class="fl">0.50</span>, <span class="fl">0.50</span>, <span class="fl">0.98</span>))</a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="kw">make_test_score_plot</span>(df_p02_p50_p98, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, </a>
-<a class="sourceLine" id="cb12-4" title="4">                     <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i],<span class="st">&quot; = {0.02 , 0.50, 0.50, 0.50, 0.98}&quot;</span>))))</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="3-1-total-score-difficulty.html#cb14-1"></a><span class="co"># To fix, add more moderate difficutly tests</span></span>
+<span id="cb14-2"><a href="3-1-total-score-difficulty.html#cb14-2"></a>df_p02_p50_p98 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.02</span> , <span class="fl">0.50</span>, <span class="fl">0.50</span>, <span class="fl">0.50</span>, <span class="fl">0.98</span>))</span>
+<span id="cb14-3"><a href="3-1-total-score-difficulty.html#cb14-3"></a><span class="kw">make_test_score_plot</span>(df_p02_p50_p98, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, </span>
+<span id="cb14-4"><a href="3-1-total-score-difficulty.html#cb14-4"></a>                     <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i],<span class="st">&quot; = {0.02 , 0.50, 0.50, 0.50, 0.98}&quot;</span>))))</span></code></pre></div>
 <p><img src="allofdataanalysis_files/figure-html/03-01-df-p02-p50-p98-1.png" width="672" /></p>
 <p>At first, you might think “If too many people are scoring ~7.5 (50% of possible max 15), then why should the items be medium diffculty such that 50% of the test takers would answer correctly? Shouldn’t I add more easy / hard items?” Well in the simulation example <a href="#03-01-df-p02-p98"><strong>??</strong></a>, we took “add more easy / hard items” to the extreme where all items were only very easy or very hard. This distribution happens because score is the <em>total sum</em> of individual item’s correct (1) or incorrect (0). If half of the items were very hard, the sum of those very hard items would be 0 or near 0. On the other hand, the other half of very easy items would have sum of 7 or nearly 8 (or ~8, because we have odd number of items). When you add these halves togehter, the total score hovers around the middle score of ~7.5.</p>
 
