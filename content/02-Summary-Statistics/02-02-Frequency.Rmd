@@ -277,7 +277,7 @@ kable(df_freq_grouped, booktabs = TRUE, align = "c") %>%
   kable_styling(bootstrap_options = c("striped", "bordered"), full_width = F)
 ```
 
-```{r 02-03-grouped-frequency-plot, out.width="680px", out.height="450px", fig.align="center", optipng = '-o7', cache=T}
+```{r 02-03-grouped-frequency-plot, out.width="680px", out.height="450px", optipng = '-o7', cache=T, fig.align="center"}
 library(ggplot2)
 ungrouped_freq_plot <- ggplot(df_freq) + 
   geom_bar(aes(x, f), stat = "identity") +

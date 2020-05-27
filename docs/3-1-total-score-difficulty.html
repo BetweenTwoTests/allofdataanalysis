@@ -233,26 +233,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now we generate 15-item test administered to 1000 people and plot the total score against theoretically normally distributed total score. Note the diffculty <span class="math inline">\(p_i\)</span> (<code>prob</code> in the R code)</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="3-1-total-score-difficulty.html#cb8-1"></a>df_p25 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.25</span>)</span>
 <span id="cb8-2"><a href="3-1-total-score-difficulty.html#cb8-2"></a><span class="kw">make_test_score_plot</span>(df_p25, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.25</span>,<span class="st">&quot; (hard)&quot;</span>))))</span></code></pre></div>
-<p><img src="allofdataanalysis_files/figure-html/03-01-df-p25-1.png" width="672" /></p>
+<div class="figure" style="text-align: center"><span id="fig:03-01-df-p25"></span>
+<img src="allofdataanalysis_files/figure-html/03-01-df-p25-1.png" alt="All hard item simulation" width="672" />
+<p class="caption">
+Figure 3.1: All hard item simulation
+</p>
+</div>
 <p>Items have hard difficulty (25% chance of correct), so the total score for test takers are right skewed.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="3-1-total-score-difficulty.html#cb9-1"></a>df_p50 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.50</span>)</span>
 <span id="cb9-2"><a href="3-1-total-score-difficulty.html#cb9-2"></a><span class="kw">make_test_score_plot</span>(df_p50, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.50</span>,<span class="st">&quot; (medium)&quot;</span>))))</span></code></pre></div>
-<p><img src="allofdataanalysis_files/figure-html/03-01-df-p50-1.png" width="672" /></p>
+<div class="figure" style="text-align: center"><span id="fig:03-01-df-p50"></span>
+<img src="allofdataanalysis_files/figure-html/03-01-df-p50-1.png" alt="All medium item simulation" width="672" />
+<p class="caption">
+Figure 3.2: All medium item simulation
+</p>
+</div>
 <p>Items have medium difficulty (50% chance of correct), so the total score for test takers are normally distributed.</p>
 <blockquote>
 <p>TODO compare kurtosis?</p>
 </blockquote>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="3-1-total-score-difficulty.html#cb10-1"></a>df_p75 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.75</span>)</span>
 <span id="cb10-2"><a href="3-1-total-score-difficulty.html#cb10-2"></a><span class="kw">make_test_score_plot</span>(df_p75, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.75</span>,<span class="st">&quot; (easy)&quot;</span>))))</span></code></pre></div>
-<p><img src="allofdataanalysis_files/figure-html/03-01-df-p75-1.png" width="672" /></p>
+<div class="figure" style="text-align: center"><span id="fig:03-01-df-p75"></span>
+<img src="allofdataanalysis_files/figure-html/03-01-df-p75-1.png" alt="All easy item simulation" width="672" />
+<p class="caption">
+Figure 3.3: All easy item simulation
+</p>
+</div>
 <p>Items have east difficulty (75% chance of correct), so the total score for test takers are left skewed.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="3-1-total-score-difficulty.html#cb11-1"></a>df_p02 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.02</span>)</span>
 <span id="cb11-2"><a href="3-1-total-score-difficulty.html#cb11-2"></a><span class="kw">make_test_score_plot</span>(df_p02, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.02</span>,<span class="st">&quot; (very hard)&quot;</span>))))</span></code></pre></div>
-<p><img src="allofdataanalysis_files/figure-html/03-01-df-p02-1.png" width="672" /></p>
+<div class="figure" style="text-align: center"><span id="fig:03-01-df-p02"></span>
+<img src="allofdataanalysis_files/figure-html/03-01-df-p02-1.png" alt="All very hard item simulation" width="672" />
+<p class="caption">
+Figure 3.4: All very hard item simulation
+</p>
+</div>
 <p>Items have very hard difficulty (2% chance of correct), so the total score for test takers are highly right skewed. This test isn’t useful (Other than maybe identifying that one-in-a-million genius. Regardless, this test is not discriminatory).</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="3-1-total-score-difficulty.html#cb12-1"></a>df_p98 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="fl">0.98</span>)</span>
 <span id="cb12-2"><a href="3-1-total-score-difficulty.html#cb12-2"></a><span class="kw">make_test_score_plot</span>(df_p98, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i], <span class="st">&quot; = &quot;</span>, <span class="fl">0.98</span>,<span class="st">&quot; (very easy)&quot;</span>))))</span></code></pre></div>
-<p><img src="allofdataanalysis_files/figure-html/03-01-df-p98-1.png" width="672" /></p>
+<div class="figure" style="text-align: center"><span id="fig:03-01-df-p98"></span>
+<img src="allofdataanalysis_files/figure-html/03-01-df-p98-1.png" alt="All very easy item simulation" width="672" />
+<p class="caption">
+Figure 3.5: All very easy item simulation
+</p>
+</div>
 <p>Items have very easy difficulty (98% chance of correct), so the total score for test takers are highly left skewed. This test isn’t useful because everyone will get perfect or near perfect scores.</p>
 <hr />
 <p>So what is an ideal test? A good mixture of items varying diffculty around 0.30 - 0.70 (for average of 0.5).</p>
@@ -261,14 +286,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-2"><a href="3-1-total-score-difficulty.html#cb13-2"></a>df_p02_p98 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.02</span>, <span class="fl">0.98</span>))</span>
 <span id="cb13-3"><a href="3-1-total-score-difficulty.html#cb13-3"></a><span class="kw">make_test_score_plot</span>(df_p02_p98, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, </span>
 <span id="cb13-4"><a href="3-1-total-score-difficulty.html#cb13-4"></a>                     <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i],<span class="st">&quot; = 0.02 or &quot;</span>, p[i], <span class="st">&quot;, = 0.98 (very hard or very easy)&quot;</span>))))</span></code></pre></div>
-<p><img src="allofdataanalysis_files/figure-html/03-01-df-p02-p98-1.png" width="672" /></p>
+<div class="figure" style="text-align: center"><span id="fig:03-01-df-p02-p98"></span>
+<img src="allofdataanalysis_files/figure-html/03-01-df-p02-p98-1.png" alt="Very hard or very easy item simulation" width="672" />
+<p class="caption">
+Figure 3.6: Very hard or very easy item simulation
+</p>
+</div>
 <p>The simulation shows that the total score distribution is piling up in the middle, creating highly leptokurtic distribution. To fix this, you have to add more <em>MEDIUM LEVEL</em> items to <u>distribute item’s contribution to the total score to both ends of the total score</u></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="3-1-total-score-difficulty.html#cb14-1"></a><span class="co"># To fix, add more moderate difficutly tests</span></span>
 <span id="cb14-2"><a href="3-1-total-score-difficulty.html#cb14-2"></a>df_p02_p50_p98 &lt;-<span class="st"> </span><span class="kw">make_test_score_df</span>(<span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.02</span> , <span class="fl">0.50</span>, <span class="fl">0.50</span>, <span class="fl">0.50</span>, <span class="fl">0.98</span>))</span>
 <span id="cb14-3"><a href="3-1-total-score-difficulty.html#cb14-3"></a><span class="kw">make_test_score_plot</span>(df_p02_p50_p98, <span class="dt">item_n =</span> <span class="dv">15</span>, <span class="dt">person_n =</span> <span class="dv">1000</span>, </span>
 <span id="cb14-4"><a href="3-1-total-score-difficulty.html#cb14-4"></a>                     <span class="dt">subtitle =</span> (<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;All items: &quot;</span>, p[i],<span class="st">&quot; = {0.02 , 0.50, 0.50, 0.50, 0.98}&quot;</span>))))</span></code></pre></div>
-<p><img src="allofdataanalysis_files/figure-html/03-01-df-p02-p50-p98-1.png" width="672" /></p>
-<p>At first, you might think “If too many people are scoring ~7.5 (50% of possible max 15), then why should the items be medium diffculty such that 50% of the test takers would answer correctly? Shouldn’t I add more easy / hard items?” Well in the simulation example <a href="#03-01-df-p02-p98"><strong>??</strong></a>, we took “add more easy / hard items” to the extreme where all items were only very easy or very hard. This distribution happens because score is the <em>total sum</em> of individual item’s correct (1) or incorrect (0). If half of the items were very hard, the sum of those very hard items would be 0 or near 0. On the other hand, the other half of very easy items would have sum of 7 or nearly 8 (or ~8, because we have odd number of items). When you add these halves togehter, the total score hovers around the middle score of ~7.5.</p>
+<div class="figure" style="text-align: center"><span id="fig:03-01-df-p02-p50-p98"></span>
+<img src="allofdataanalysis_files/figure-html/03-01-df-p02-p50-p98-1.png" alt="Medium difficulty added item simulation" width="672" />
+<p class="caption">
+Figure 3.7: Medium difficulty added item simulation
+</p>
+</div>
+<p>At first, you might think “If too many people are scoring ~7.5 (50% of possible max 15), then why should the items be medium diffculty such that 50% of the test takers would answer correctly? Shouldn’t I add more easy / hard items?” Well in the simulation example <a href="3-1-total-score-difficulty.html#fig:03-01-df-p02-p98">3.6</a>, we took “add more easy / hard items” to the extreme where all items were only very easy or very hard. This distribution happens because score is the <em>total sum</em> of individual item’s correct (1) or incorrect (0). If half of the items were very hard, the sum of those very hard items would be 0 or near 0. On the other hand, the other half of very easy items would have sum of 7 or nearly 8 (or ~8, because we have odd number of items). When you add these halves togehter, the total score hovers around the middle score of ~7.5.</p>
 
 </div>
 <!-- </div> -->

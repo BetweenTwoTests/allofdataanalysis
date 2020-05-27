@@ -94,7 +94,7 @@ df_p25 <- make_test_score_df(item_n = 15, person_n = 1000, prob = 0.25)
 make_test_score_plot(df_p25, item_n = 15, person_n = 1000, subtitle = (expression(paste("All items: ", p[i], " = ", 0.25," (hard)"))))
 ```
 
-```{r 03-01-df-p25, eval=TRUE, echo=FALSE, cache=T}
+```{r 03-01-df-p25, eval=TRUE, echo=FALSE, cache=T, optipng = '-o7', fig.align="center", fig.cap="All hard item simulation"}
 make_test_score_plot(df_kurtosis_difficulty$df_p25, item_n = 15, person_n = 1000, subtitle = (expression(paste("All items: ", p[i], " = ", 0.25," (hard)"))))
 ```
 
@@ -105,7 +105,7 @@ df_p50 <- make_test_score_df(item_n = 15, person_n = 1000, prob = 0.50)
 make_test_score_plot(df_p50, item_n = 15, person_n = 1000, subtitle = (expression(paste("All items: ", p[i], " = ", 0.50," (medium)"))))
 ```
 
-```{r 03-01-df-p50, eval=TRUE, echo=FALSE, cache=T}
+```{r 03-01-df-p50, eval=TRUE, echo=FALSE, cache=T, optipng = '-o7', fig.align="center", fig.cap="All medium item simulation"}
 make_test_score_plot(df_kurtosis_difficulty$df_p50, item_n = 15, person_n = 1000, subtitle = (expression(paste("All items: ", p[i], " = ", 0.50," (medium)"))))
 ```
 
@@ -118,7 +118,7 @@ df_p75 <- make_test_score_df(item_n = 15, person_n = 1000, prob = 0.75)
 make_test_score_plot(df_p75, item_n = 15, person_n = 1000, subtitle = (expression(paste("All items: ", p[i], " = ", 0.75," (easy)"))))
 ```
 
-```{r 03-01-df-p75, eval=TRUE, echo=FALSE, cache=T}
+```{r 03-01-df-p75, eval=TRUE, echo=FALSE, cache=T, optipng = '-o7', fig.align="center", fig.cap="All easy item simulation"}
 make_test_score_plot(df_kurtosis_difficulty$df_p75, item_n = 15, person_n = 1000, subtitle = (expression(paste("All items: ", p[i], " = ", 0.75," (easy)"))))
 ```
 
@@ -129,7 +129,7 @@ df_p02 <- make_test_score_df(item_n = 15, person_n = 1000, prob = 0.02)
 make_test_score_plot(df_p02, item_n = 15, person_n = 1000, subtitle = (expression(paste("All items: ", p[i], " = ", 0.02," (very hard)"))))
 ```
 
-```{r 03-01-df-p02, eval=TRUE, echo=FALSE, cache=T}
+```{r 03-01-df-p02, eval=TRUE, echo=FALSE, cache=T, optipng = '-o7', fig.align="center", fig.cap="All very hard item simulation"}
 make_test_score_plot(df_kurtosis_difficulty$df_p02, item_n = 15, person_n = 1000, subtitle = (expression(paste("All items: ", p[i], " = ", 0.02," (very hard)"))))
 ```
 
@@ -140,7 +140,7 @@ df_p98 <- make_test_score_df(item_n = 15, person_n = 1000, prob = 0.98)
 make_test_score_plot(df_p98, item_n = 15, person_n = 1000, subtitle = (expression(paste("All items: ", p[i], " = ", 0.98," (very easy)"))))
 ```
 
-```{r 03-01-df-p98, eval=TRUE, echo=FALSE, cache=T}
+```{r 03-01-df-p98, eval=TRUE, echo=FALSE, cache=T, optipng = '-o7', fig.align="center", fig.cap="All very easy item simulation"}
 make_test_score_plot(df_kurtosis_difficulty$df_p98, item_n = 15, person_n = 1000, subtitle = (expression(paste("All items: ", p[i], " = ", 0.98," (very easy)"))))
 ```
 
@@ -160,7 +160,7 @@ make_test_score_plot(df_p02_p98, item_n = 15, person_n = 1000,
                      subtitle = (expression(paste("All items: ", p[i]," = 0.02 or ", p[i], ", = 0.98 (very hard or very easy)"))))
 ```
 
-```{r 03-01-df-p02-p98, eval=TRUE, echo=FALSE, cache=T}
+```{r 03-01-df-p02-p98, eval=TRUE, echo=FALSE, cache=T, optipng = '-o7', fig.align="center", fig.cap="Very hard or very easy item simulation"}
 make_test_score_plot(df_kurtosis_difficulty$df_p02_p98, item_n = 15, person_n = 1000, 
                      subtitle = (expression(paste("All items: ", p[i]," = 0.02 or ", p[i], ", = 0.98 (very hard or very easy)"))))
 ```
@@ -174,11 +174,11 @@ make_test_score_plot(df_p02_p50_p98, item_n = 15, person_n = 1000,
                      subtitle = (expression(paste("All items: ", p[i]," = {0.02 , 0.50, 0.50, 0.50, 0.98}"))))
 ```
 
-```{r 03-01-df-p02-p50-p98, eval=TRUE, echo=FALSE, cache=T}
+```{r 03-01-df-p02-p50-p98, eval=TRUE, echo=FALSE, cache=T, optipng = '-o7', fig.align="center", fig.cap="Medium difficulty added item simulation"}
 make_test_score_plot(df_kurtosis_difficulty$df_p02_p50_p98, item_n = 15, person_n = 1000, 
                      subtitle = (expression(paste("All items: ", p[i]," = {0.02 , 0.50, 0.50, 0.50, 0.98}"))))
 ```
 
-At first, you might think "If too many people are scoring ~7.5 (50% of possible max 15), then why should the items be medium diffculty such that 50% of the test takers would answer correctly? Shouldn't I add more easy / hard items?" Well in the simulation example \@ref(03-01-df-p02-p98), we took "add more easy / hard items" to the extreme where all items were only very easy or very hard. This distribution happens because score is the *total sum* of individual item's correct (1) or incorrect (0). If half of the items were very hard, the sum of those very hard items would be 0 or near 0. On the other hand, the other half of very easy items would have sum of 7 or nearly 8 (or ~8, because we have odd number of items). When you add these halves togehter, the total score hovers around the middle score of ~7.5.
+At first, you might think "If too many people are scoring ~7.5 (50% of possible max 15), then why should the items be medium diffculty such that 50% of the test takers would answer correctly? Shouldn't I add more easy / hard items?" Well in the simulation example \@ref(fig:03-01-df-p02-p98), we took "add more easy / hard items" to the extreme where all items were only very easy or very hard. This distribution happens because score is the *total sum* of individual item's correct (1) or incorrect (0). If half of the items were very hard, the sum of those very hard items would be 0 or near 0. On the other hand, the other half of very easy items would have sum of 7 or nearly 8 (or ~8, because we have odd number of items). When you add these halves togehter, the total score hovers around the middle score of ~7.5.
 
 
